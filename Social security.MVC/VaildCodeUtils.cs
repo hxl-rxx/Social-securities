@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 
-namespace Social_Security
+namespace Social_security.MVC
 {
     /// <summary>
     /// 公共静态

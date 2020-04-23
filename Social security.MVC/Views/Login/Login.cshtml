@@ -1,9 +1,19 @@
-﻿<!DOCTYPE html>
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+
 <html>
 <head>
-    <link href="Content/bootstrap.css" rel="stylesheet" />
-    <script src="Scripts/bootstrap.min.js"></script>
-    <script src="Scripts/jquery-3.4.1.min.js"></script>
+    @*<link href="Content/bootstrap.css" rel="stylesheet" />
+        <script src="Scripts/bootstrap.min.js"></script>
+        <script src="Scripts/jquery-3.4.1.min.js"></script>*@
+
     <meta charset="UTF-8">
     <title></title>
     <!--<link rel="stylesheet" type="text/css" href="css/tx1.css" />-->
@@ -94,57 +104,57 @@
     </style>
     <div class="login-box">
         <h2>Login</h2>
-        <form>
+        <form method="post">
             <div class="login-field">
-                <input type="text" name="" id="name" required="" />
+                <input type="text" name="name" id="name" required="" />
                 <label>Username</label>
             </div>
             <div class="login-field">
-                <input type="password" name="" id="pwd" required="" />
+                <input type="password" name="pwd" id="pwd" required="" />
                 <label>Password</label>
             </div>
             <div class="login-field">
-                <input type="text" name="validCode" id="validCode"required="" />
-                <label >Verification Code</label>
+                <input type="text" name="validCode" id="validCode" required="" />
+                <label>Verification Code</label>
                 <img alt="看不清，换一张" src="/Login/CreateValidCodeImage" id="validCodeImg" onclick="change()" />
             </div>
-            <button type="button" id="submit" onclick="login()">Submit</button>
+            <button type="submit" id="submit" @*onclick="login()"*@>Submit</button>
         </form>
     </div>
 </body>
 </html>
 <script>
     function change() {
-        $("#validCodeImg").prop("src", "Login/CreateValidCodeImage?t=" + new Date().getTime());
+        $("#validCodeImg").prop("src", "/Login/CreateValidCodeImage?t=" + new Date().getTime());
     }
-    function login() {
-        var name = $("#name").val();
-        var pwd = $("#pwd").val();
-        var sessionValidCode = $("#validCode").val();
-        if (name != null && !pwd != null && sessionValidCode != null) {
-            sessionValidCode = Session["sessionValidCode"].ToString();
-            if (sessionValidCode.Equals(sessionValidCode.Trim(), StringComparison.CurrentCultureIgnoreCase)) {
-                $.ajax({
-                    url: 'https://localhost:44319/api/Social/Login',
-                    type: 'get',
-                    data: { Name: name, PassWord: pwd },
-                    success: function (data) {
-                        if (data > 0) {
-                            alert("登录成功");
-                        }
-                        else {
-                            alert("登录失败");
-                        }
-                    }
-                })
-            }
-            else {
-                alert("登录失败,验证码错误！");
-            }
-        }
-        else {
-            alert("账号、密码、验证码不能为空！");
-        }
-        
-    }
+    //function login() {
+    //    var name = $("#name").val();
+    //    var pwd = $("#pwd").val();
+    //    var sessionValidCode = $("#validCode").val();
+    //    if (name != null && !pwd != null && sessionValidCode != null) {
+    //        sessionValidCode = Session["sessionValidCode"].ToString();
+    //        if (sessionValidCode.Equals(sessionValidCode.Trim(), StringComparison.CurrentCultureIgnoreCase)) {
+    //            $.ajax({
+    //                url: 'https://localhost:44319/api/Social/Login',
+    //                type: 'get',
+    //                data: { Name: name, PassWord: pwd },
+    //                success: function (data) {
+    //                    if (data > 0) {
+    //                        alert("登录成功");
+    //                    }
+    //                    else {
+    //                        alert("登录失败");
+    //                    }
+    //                }
+    //            })
+    //        }
+    //        else {
+    //            alert("登录失败,验证码错误！");
+    //        }
+    //    }
+    //    else {
+    //        alert("账号、密码、验证码不能为空！");
+    //    }
+
+    //}
 </script>

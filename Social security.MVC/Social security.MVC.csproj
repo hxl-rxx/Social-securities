@@ -138,6 +138,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\1001560.jpg" />
+    <Content Include="Images\QQ图片20200423165223.jpg" />
+    <Content Include="Images\QQ图片20200423193957.jpg" />
     <Content Include="Login.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

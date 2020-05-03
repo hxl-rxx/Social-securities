@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="Scripts/jquery-3.4.1.min.js"></script>
+     <script>
+         var path = location.href;
+         var list = path.split("?id=");
+         var str = list[1];
+         $.ajax({
+             url: 'http://localhost:44319/api/Employee/PutEmployees?id=' + str,
+             type: 'get',
+             success: function (d) {
+                 $("#TexName").val(d.Name),
+                     $("#TexCard").val(d.IDCard),
+                     $('input[name="sex"]').get(d.Sex).checked="checked";
+                     $("#Select1").val(d.Cid).attr('selected="selected"'),
+                     $("#TexPhone").val(d.Tel),
+                     $("#TexAdd").val(d.Address)
+             }
+         })
+         function UptEmploy() {
+             var s = {};
+             s.Name = $("#TexName").val();
+             s.IDCard = $("#TexCard").val();
+             s.Sex = $('input[name="sex"]:checked').val();
+             s.Cid = $('#Select1 option:selected').val()
+             s.Tel = $("#TexPhone").val();
+             s.Address = $("#TexAdd").val();
+             s.ID = MessId;
+             $.ajax({
+                 url: 'http://localhost:44319/api/Employee/UptEmployees',
+                 type: 'post',
+                 data: s,
+                 success: function (d) {
+                     if (d > 0) {
+                         alert("修改成功");
+                         location.href = '/Employee.html';
+                     }
+                     else {
+                         alert("修改失败");
+                     }
+                 }
+             })
+         }
+         $(function () {
+             change_Select1();
+         })
+         function change_Select1() {
+             $.ajax({
+                 url: "http://localhost:44319/api/Company/companies",
+                 type: "POST",
+                 dataType: "json",
+                 success: function (data) {
+                     $("#body").empty();
+                     $(data).each(function () {
+                         var line = '<option value=' + this.Companyid + '>' + this.Cname + '</option>'
+                         $("#Select1").append(line);
+                     })
+                 }
+             })
+         }
+     </script>
+</head>
+<body>
+    <div class="panel-body">
+        <form role="form" class="form-inline">
+            <div style="margin-bottom:15px;"><label>姓名:</label> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="TexName" placeholder="请输入姓名"></div>
+            <div style="margin-bottom:15px;"><label>身份证号:</label>&nbsp<input type="text" class="form-control" id="TexCard" placeholder="请输入身份证号"></div>
+            <div style="margin-bottom:15px;">
+                <label>性别:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="Radio1" type="radio" value="1" name="sex" checked="checked" />男
+                <input id="Radio1" type="radio" value="0" name="sex" />女
+            </div>
+            <div style="margin-bottom:15px;">
+                <label>公司:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <select id="Select1" onchange="change_Select1()">
+                    <option value="-1">==请选择==</option>
+                </select>
+            </div>
+            <div style="margin-bottom:15px;"><label>联系电话:</label>&nbsp<input type="text" class="form-control" id="TexPhone" placeholder="请输入联系方式"></div>
+            <div style="margin-bottom:15px;"><label>住址:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="TexAdd" placeholder="请输入住址"></div>
+            <div>
+                <input id="Button1" type="button" value="提交" onclick="AddEmploy()" class="btn btn-success" />
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input id="Button1" type="button" value="返回" onclick="location.href='/Employee.html'" class="btn btn-danger" />
+            </div>
+        </form>
+    </div>
+</body>
+</html>

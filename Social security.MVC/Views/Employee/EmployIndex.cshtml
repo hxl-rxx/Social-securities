@@ -1,0 +1,64 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>员工明细表</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            $.ajax({
+                url: "http://localhost:44319/api/Employee/GetEmployees",
+                type: 'get',
+                success: function (d) {
+                    if (d.length > 0) {
+                        $(d).each(function () {
+                            var line = '<tr>'
+                                + '<td>' + this.ID + '</td>'
+                                + '<td>' + this.Name + '</td>'
+                                + '<td>' + this.IDCard + '</td>'
+                                + '<td>' + Sexd(this.Sex) + '</td>'
+                                + '<td>' + this.Name + '</td>'
+                                + '<td>' + this.Tel + '</td>'
+                                + '<td>' + this.Address + '</td>'
+                                + '</tr>'
+                            $("#body").append(line);
+                        })
+                    }
+                }
+            })
+        })
+        function Sexd(id) {
+            if (id == 0) {
+                return "女";
+            }
+            else {
+                return "男";
+            }
+        }
+    </script>
+</head>
+<body>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>员工ID</th>
+                <th>员工姓名</th>
+                <th>身份证号</th>
+                <th>性别</th>
+                <th>公司名称</th>
+                <th>联系电话</th>
+                <th>家庭住址</th>
+            </tr>
+        </thead>
+        <tbody id="body">
+        </tbody>
+    </table>
+</body>
+</html>
+

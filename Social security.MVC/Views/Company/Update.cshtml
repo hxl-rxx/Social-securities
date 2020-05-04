@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Update";
+    Layout = null;
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<h2>修改公司信息</h2>
+<table class="table table-bordered">
+    <tr>
+        <td>公司名称</td>
+        <td><input id="txtname" type="text" /></td>
+    </tr>
+    <tr>
+        <td>销售员</td>
+        <td><input id="txtsaleman" type="text" /></td>
+    </tr>
+    <tr>
+        <td>创建时间</td>
+        <td><input id="txtime" type="text" /></td>
+    </tr>
+    <tr>
+        <td><input id="button1" type="button" value="提交" onclick="uptcompany()" /></td>
+        <td><input id="button1" type="button" value="返回" onclick="location.href='Companies/Index'" /></td>
+    </tr>
+</table>
+<script>
+    var id;
+    $(function () {
+        var path = this.location.href;
+        var index = path.indexOf("=");
+        id = path.substr(index + 1);
+        $.ajax({
+            url: 'http://localhost:44319/api/Company/GetCompanyList',
+            dataType: "json",
+            data: { Id: id },
+            success: function (data) {
+                //console.log(data);
+                $("#txtname").val(data[0].Cname),
+                    $("#txtsaleman").val(data[0].Salesman),
+                    $("#txtime").val(data[0].CreateTime)
+            }
+        })
+    })
+
+    function uptcompany() {
+        var s = {
+            Cname : $("#txtname").val(),
+            Salesman: $("#txtsaleman").val(),
+            CreateTime: $("#txtime").val(),
+            CompanyId: id
+        }
+        $.ajax({
+            url: 'http://localhost:57462/api/Company/UptCompany',
+            type: 'post',
+            data: { s: JSON.stringify(s)},
+            success: function (d) {
+                if (d > 0) {
+                    alert("修改成功！");
+                    location.href="/Company/Index";
+                }
+            }
+        })
+    }
+</script>
+

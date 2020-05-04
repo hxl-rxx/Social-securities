@@ -103,22 +103,23 @@
             }
     </style>
     <div class="login-box">
-        <h2>Login</h2>
+        <h2>用户登录</h2>
         <form method="post">
             <div class="login-field">
                 <input type="text" name="name" id="name" required="" />
-                <label>Username</label>
+                <label>用户名</label>
             </div>
             <div class="login-field">
                 <input type="password" name="pwd" id="pwd" required="" />
-                <label>Password</label>
+                <label>密  码</label>
             </div>
             <div class="login-field">
                 <input type="text" name="validCode" id="validCode" required="" />
-                <label>Verification Code</label>
+                <label>验证码</label>
                 <img alt="看不清，换一张" src="/Login/CreateValidCodeImage" id="validCodeImg" onclick="change()" />
             </div>
-            <button type="submit" id="submit" @*onclick="login()"*@>Submit</button>
+            <button type="submit" id="submit" @*onclick="login()"*@>登录</button>
+            <button type="button" id="submit" @*onclick="login()"*@>注册</button>
         </form>
     </div>
 </body>

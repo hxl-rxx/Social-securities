@@ -2,111 +2,134 @@
 @{
     Layout = null;
 }
+   @* <link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+    <style type="text/css">
 
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        .wrap {
+            width: 260px;
+            height: 100%;
+            background-color: #363a45;
+        }
+
+        .header {
+            width: 100%;
+            height: 65px;
+            background-color: #44495a;
+            font-size: 24px;
+            color: #fff;
+            text-align: center;
+            line-height: 65px;
+        }
+
+        .nav {
+            width: 250px;
+            margin: 10px 5px 0;
+        }
+
+        .list {
+            margin-bottom: 5px;
+        }
+
+            .list h2 {
+                position: relative;
+                padding: 15px 0;
+                background-color: #3889d4;
+                text-align: center;
+                font-size: 16px;
+                color: #fff;
+                transition: .5s;
+            }
+
+                .list h2.on {
+                    background-color: #393c4a;
+                }
+
+            .list i {
+                position: absolute;
+                right: 10px;
+                top: 16px;
+                border: 8px solid transparent;
+                border-left-color: #fff; /*triangle*/
+                transform: rotate(0deg);
+                transform-origin: 1px 8px;
+                transition: .5s;
+            }
+
+                .list i.on {
+                    transform: rotate(90deg);
+                }
+
+        .hide {
+            overflow: hidden;
+            height: 0;
+            transition: .5s;
+        }
+
+            .hide li {
+                padding: 10px 0;
+                background-color: #282c3a;
+                text-align: center;
+                color: #fff;
+                border-bottom: #42495d;
+            }
+
+            .hide a {
+                height: 30px;
+                color: white;
+                font-size: 24px;
+                display: block;
+                background-color: #282c3a;
+                border-bottom: 1px dashed #F3F3F3;
+                text-decoration: none;
+                text-align: center;
+                /*padding-top: 2px;*/
+                padding-bottom: 3px;
+            }
+
+                .hide a:hover {
+                    background-color: darkcyan;
+                }
+    </style>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="Keywords" content="">
     <meta name="Description" content="">
-    <title>侧边下拉导航栏</title>
+    <title>春风社保管理系统</title>
+    @*@Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")*@
+    @*@RenderSection("scripts", required: false)*@
 </head>
-<style type="text/css">
 
-    * {
-        padding: 0;
-        margin: 0;
-    }
-
-    html, body {
-        height: 100%;
-    }
-
-    .wrap {
-        width: 260px;
-        height: 100%;
-        background-color: #363a45;
-    }
-
-    .header {
-        width: 100%;
-        height: 65px;
-        background-color: #44495a;
-        font-size: 24px;
-        color: #fff;
-        text-align: center;
-        line-height: 65px;
-    }
-
-    .nav {
-        width: 250px;
-        margin: 10px 5px 0;
-    }
-
-    .list {
-        margin-bottom: 5px;
-    }
-
-        .list h2 {
-            position: relative;
-            padding: 15px 0;
-            background-color: #3889d4;
-            text-align: center;
-            font-size: 16px;
-            color: #fff;
-            transition: .5s;
-        }
-
-            .list h2.on {
-                background-color: #393c4a;
-            }
-
-        .list i {
-            position: absolute;
-            right: 10px;
-            top: 16px;
-            border: 8px solid transparent;
-            border-left-color: #fff; /*triangle*/
-            transform: rotate(0deg);
-            transform-origin: 1px 8px;
-            transition: .5s;
-        }
-
-            .list i.on {
-                transform: rotate(90deg);
-            }
-
-    .hide {
-        overflow: hidden;
-        height: 0;
-        transition: .5s;
-    }
-
-        .hide li {
-            padding: 10px 0;
-            background-color: #282c3a;
-            text-align: center;
-            color: #fff;
-            border-bottom: #42495d;
-        }
-
-        .hide a {
-            height: 30px;
-            color: white;
-            font-size: 24px;
-            display: block;
-            background-color: #282c3a;
-            border-bottom: 1px dashed #F3F3F3;
-            text-decoration: none;
-            text-align: center;
-            /*padding-top: 2px;*/
-            padding-bottom: 3px;
-        }
-        .hide a:hover {
-            background-color: darkcyan;
-        }
-</style>
 <body>
+    <div class="container" style="background-color:#363a45;width:100%;text-align:right;height:60px">
+        @if (Session["name"] != null)
+        {
+            <ul class="pagination">
+                <li><span style="color:white">欢迎您：@Session["name"]</span></li>
+                <li>@Html.ActionLink("注销","Lgoin","Login")</li>
+            </ul>
+        }
+        else
+        {
+            <ul class="pagination">
+                <li><a href="" id="" style="color:black">登录</a></li>
+                <li><a href="" id="" style="color:black">注册</a></li>
+            </ul>
+        }
+    </div>
     <div class="wrap">
         <div class="header">春风社保</div>
         <div class="nav">

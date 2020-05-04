@@ -13,5 +13,24 @@ namespace Social_security.MVC.Controllers
         {
             return View();
         }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        //public ActionResult Del()
+        //{
+        //    return View();
+        //}
+        public ActionResult Update(int Id)
+        {
+            return View();
+        }
+        //[HttpPost]
+        //public ActionResult Update(int id, Company company)
+        //{
+        //    return View();
+        //}
     }
 }

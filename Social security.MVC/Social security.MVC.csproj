@@ -177,6 +177,8 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Company\Index.cshtml" />
     <Content Include="Views\Employee\EmployIndex.cshtml" />
+    <Content Include="Views\Company\Create.cshtml" />
+    <Content Include="Views\Company\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

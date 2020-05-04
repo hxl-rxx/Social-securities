@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<h2>公司信息</h2>
+<table class="table table-bordered">
+    <tr>
+        <td>公司名称</td>
+        <td><input id="txtname" type="text" /></td>
+    </tr>
+    <tr>
+        <td>销售员</td>
+        <td><input id="txtsaleman" type="text" /></td>
+    </tr>
+    <tr>
+        <td>创建时间</td>
+        <td><input id="txtime" type="text" /></td>
+    </tr>
+    <tr>
+        <td><input id="button1" type="button" value="提交" onclick="Addcompany()" /></td>
+        <td><input id="button1" type="button" value="取消" onclick="location.href='/Companies/Create'" /></td>
+    </tr>
+</table>
+<script>
+    function Addcompany() {
+        var obj = { Cname: $("#txtname").val(), Salesman: $("#txtsaleman").val(), CreateTime: $("#txtime").val() };
+        $.ajax({
+            url: 'http://localhost:44319/api/Company/AddCompany',
+            type: 'post',
+            data: obj,
+            success: function (data) {
+                alert("添加成功");
+                location.href = '/Company/Index';
+            },
+            error: function (data) {
+                alert(data);
+            }
+        })
+    }
+</script>
+

@@ -5,8 +5,6 @@
     <title></title>
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <script src="Scripts/jquery-3.4.1.min.js"></script>
-
-  <script></script>
     <script>
         function AddEmploy() {
             var s = {};
@@ -23,7 +21,7 @@
                 success: function (d) {
                     if (d > 0) {
                         alert('添加成功');
-                        location.href = '/Index.html';
+                        location.href = '/Employee.html';
                     }
                     else {
                         alert('添加失败');
@@ -49,6 +47,7 @@
             })
         }
     </script>
+
 </head>
 <body>
     <div class="panel-body">
@@ -62,14 +61,14 @@
             <div style="margin-bottom:15px;">
                 <label>公司:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 <select id="Select1" onchange="change_Select1()">
-                    <option value="-1">==请选择==</option>
+                    <option value="">==请选择==</option>
                 </select>
             </div>
             <div style="margin-bottom:15px;"><label>联系电话:</label>&nbsp<input type="text" class="form-control" id="TexPhone" placeholder="请输入联系方式"></div>
             <div style="margin-bottom:15px;"><label>住址:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="TexAdd" placeholder="请输入住址"></div>
             <div>
                 <input id="Button1" type="button" value="提交" onclick="AddEmploy()" class="btn btn-success" />
-                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input id="Button1" type="button" value="返回" onclick="location.href='/Employee.html'" class="btn btn-danger" />
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input id="Button1" type="button" value="返回" onclick="location.href='/EmployIndex.html'" class="btn btn-danger" />
             </div>
         </form>
     </div>

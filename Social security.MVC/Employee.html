@@ -7,56 +7,60 @@
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        $(function () {
-            $.ajax({
-                url: "http://localhost:44319/api/Employee/GetEmployees",
-                type: 'get',
-                success: function (d) {
-                    $("#body").empty();
-                    $(d).each(function () {
-                        var line = '<tr id="tr">'
-                            + '<td>' + this.ID + '</td>'
-                            + '<td>' + this.Name + '</td>'
-                            + '<td>' + Sexd(this.Sex) + '</td>'
-                            + '<td>' + this.Companys.Cname + '</td>'
-                            + '<td><input id="Button1" type="button" value="删除" class="btn btn-red" onclick="DelEmploy(' + this.ID + ')" /> <input id="Button1" type="button" value="详情" class="btn btn-red" onclick="UptEmploy(' + this.ID + ')" /></td>'
-                            + '</tr>'
-                        $("#body").append(line);
-                    })
+    $(function () {
+        $.ajax({
+            url: "http://localhost:44319/api/Employee/GetEmployees",
+            type: 'get',
+            dataType:'json',
+            success: function (d) {
+                $("#body").empty();
+                $(d).each(function () {
+                    var line = '<tr>'
+                        + '<td><input class="check" type="checkbox" /></td>'
+                        + '<td>' + this.ID + '</td>'
+                        + '<td>' + this.Name + '</td>'
+                        + '<td>' + Sexd(this.Sex) + '</td>'
+                        + '<td>' + this.Companys.Cname + '</td>'
+                        + '<td><input id="Button1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" /><input id="Button1" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" /></td>'
+                        + '</tr>'
+                    $("#body").append(line);
+                })
 
-                }
+            }
 
-            })
         })
-        function Sexd(id) {
-            if (id == 0) {
-                return "女";
-            }
-            else {
-                return "男";
-            }
+    })
+    function Sexd(id) {
+        if (id == 0) {
+            return "女";
         }
-        function ReEmploy() {
-            var name = $("#TexName").val();
-            $.ajax({
-                url: 'http://localhost:44319/api/Employee/GetEmployees',
-                type: 'get',
-                data: { name: name },
-                success: function (d) {
-                    $("#body").empty();
-                    $(d).each(function () {
-                        var line = '<tr>'
-                            + '<td>' + this.ID + '</td>'
-                            + '<td>' + this.Name + '</td>'
-                            + '<td>' + Sexd(this.Sex) + '</td>'
-                            + '<td>' + this.Companys.Cname + '</td>'
-                            + '</tr>'
-                        $("#body").append(line);
+        else {
+            return "男";
+        }
+    }
+    function ReEmploy() {
+        var name = $("#TexName").val();
+        $.ajax({
+            url: 'http://localhost:44319/api/Employee/GetEmployees',
+            type: 'get',
+            data: { name: name },
+            success: function (d) {
+                $("#body").empty();
+                $(d).each(function () {
+                    var line = '<tr>'
+                        + '<td><input class="check" type="checkbox" /></td>'
+                        + '<td>' + this.ID + '</td>'
+                        + '<td>' + this.Name + '</td>'
+                        + '<td>' + Sexd(this.Sex) + '</td>'
+                        + '<td>' + this.Companys.Cname + '</td>'
+                        + '<td><input id="Button2" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger" /> &nbsp&nbsp&nbsp&nbsp<input id="Button3" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" /></td>'
+                        + '</tr>'
+                    $("#body").append(line);
 
-                    })
+                })
 
-                }
-            })
+            }
+        })
         }
         function DelEmploy(id) {
             if (!confirm('确认删除吗?')) {
@@ -68,29 +72,134 @@
                 success: function (d) {
                     if (d > 0) {
                         alert("删除成功");
-                        location.href = '/Index.html';
+                        location.href = '/Employee.html';
                     }
                 }
             })
         }
         function UptEmploy(id) {
-            location.href = 'EmployUpdate.html?id=' + id;
-        }
-
+            location.href = "/EmployUpdate.html?id=" + id;
+    }
     </script>
     <style>
+        #Button1 {
+            display: inline-block;
+            padding: 5px 10px;
+            font-size: 17px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #32ab68;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+            #Button1:hover {
+                background-color: #32ab68
+            }
+
+            #Button1:active 
+            {
+                background-color: darkgray;
+                box-shadow: 0 5px #666;
+                transform: translateY(4px);
+            }
+        #Button2 
+        {
+            display: inline-block;
+            padding: 5px 10px;
+            font-size: 17px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color:#ff0000;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+
+            #Button2:hover 
+            {
+                background-color: #ff0000
+            }
+
+            #Button2:active 
+            {
+                background-color: darkgray;
+                box-shadow: 0 5px #666;
+                transform: translateY(4px);
+            }
+        #Button3 
+        {
+            display: inline-block;
+            padding: 5px 10px;
+            font-size: 17px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color:#32ab68;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+
+            #Button3:hover 
+            {
+                background-color: #32ab68
+            }
+
+            #Button3:active 
+            {
+                background-color: darkgray;
+                box-shadow: 0 5px #666;
+                transform: translateY(4px);
+            }
+       #TexName
+       {
+            border: 2px solid #a1a1a1;
+            padding: 10px 20px;
+            background: #dddddd;
+            width:200px;
+            border-radius: 25px;
+        }
+        /*#div1 {
+            border-radius: 25px;
+            background:#32ab68;
+            padding: 20px;
+            width: 1100px;
+            height: 3150px;
+        }*/
+
+      
+
+        /*#div1 {
+            border-radius: 25px;
+            background-position: left top;
+            background-repeat: repeat;
+            padding: 20px;
+            width: 1100px;
+            height: 3150px;
+        }*/
         .page-icon {
             margin: 20px 0 0 0;
-            font-size: 0; 
+            font-size: 0;
             text-align: center;
         }
+
             .page-icon a, .page-disabled, .page-next {
                 border: 1px solid #ccc;
                 border-radius: 3px;
                 padding: 4px 10px 5px;
-                font-size: 14PX; 
+                font-size: 14PX;
                 margin-right: 10px;
             }
+
             .page-icon a {
                 text-decoration: none; /*取消链接的下划线*/
                 color: #005aa0;
@@ -103,7 +212,7 @@
         }
 
         .page-disabled {
-            color: #ccc;
+            color:#000000;
         }
 
             .page-next i, .page-disabled i {
@@ -123,51 +232,41 @@
             background-position: -62px -608px;
             margin-left: 3px;
         }
-        </style>
+    </style>
 </head>
 <body>
-    <div class="col-sm-12 column">
-        <ol class="breadcrumb">
-            <li class="active">
-                菜单
-            </li>
-            <li class="active">
-                员工信息
-            </li>
-        </ol>
-        <div class="panel-body">
-            <form role="form" class="form-inline">
-                <div class="form-group" style="float:right"><input id="Button1" type="button" value="查询" onclick="ReEmploy()" class="btn btn-primary" /></div>
-                <div class="form-group" style="float:right"><input type="text" class="form-control" id="TexName" placeholder="请输入姓名"></div>
-            </form>
-        </div>
-        <div class="table-responsive">
-            <table class="table table-striped" id="table1">
-                <thead>
-                    <tr>
-                        <th>员工ID</th>
-                        <th>员工姓名</th>
-                        <th>性别</th>
-                        <th>公司名称</th>
-                        <th>操作</th>
-                    </tr>
-                </thead>
-                <tbody id="body">
-                </tbody>
-            </table>
-        </div>
-        <div class="page-icon">
-            <span class="page-first"><i></i>首页</span>
-            <span class="page-disabled"><i></i>上一页</span>
-            <span class="page-current">1</span>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a class="page-next" href="#">下一页<i></i></a>
-            <a class="page-last" href="#">尾页<i></i></a>
-        </div>
+    <div class="panel-body">
+        <form role="form" class="form-inline">
+            <div class="form-group" style="float:right"><input id="Button1" type="button" value="查询" onclick="ReEmploy()" class="btn btn-primary" /></div>
+            <div class="form-group" style="float:right"><input type="text" class="form-control" id="TexName" placeholder="请输入姓名"></div>
+        </form>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped" id="table1">
+            <thead>
+                <tr>
+                    <th>员工ID</th>
+                    <th>员工姓名</th>
+                    <th>性别</th>
+                    <th>公司名称</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="body">
+            </tbody>
+        </table>
+    </div>
+    <div class="page-icon">
+        <span class="page-first"><i></i>首页</span>
+        <span class="page-disabled"><i></i>上一页</span>
+        <span class="page-current">1</span>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>  
+        <a class="page-next" href="#">下一页<i></i></a>
+        <a class="page-last" href="#">尾页<i></i></a>
+    </div>
 
-        </div>
+   
 </body>
 </html>
-

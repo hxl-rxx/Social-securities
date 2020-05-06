@@ -6,135 +6,139 @@
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<style>
+    #Button1 {
+        display: inline-block;
+        padding: 5px 10px;
+        font-size: 17px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #32ab68;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
+    }
 
-<div class="col-sm-12 column">
-    <ol class="breadcrumb">
-        <li class="active">
-            菜单
-        </li>
-        <li class="active">
-            公司信息
-        </li>
-    </ol>
-    <div>
-        <input style=" " id="Button1" type="button" value="添加公司" onclick="location.href='/Company/Create'" />
-        <input id="Submit1" type="submit" value="批量删除" onclick="DelAll(id)" />
-    </div>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <div>
-        公司名称：<input id="name" type="text" />
-        <input id="Button1" type="button" value="查询" onclick="Sel()" />
-    </div>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th><input id="top" class="top" type="checkbox" onclick="alldel()" /></th>
-                <th>ID</th>
-                <th>公司名称</th>
-                <th>销售员</th>
-                <th>创建时间</th>
-                <th>操作</th>
-            </tr>
-        </thead>
-        <tbody id="td"></tbody>
-    </table>
-    </div>
-    <script>
-        $(function () {
-            $.ajax({
-                url: 'http://localhost:44319/api/Company/GetCompanyList',
-                type: 'get',
-                dataType: 'json',
-                success: function (data) {
-                    $("#td").empty();
-                    $(data).each(function () {
-                        var line = '<tr><td><input type="checkbox" class="ckdel" id=' + this.CompanyId + ' /></td>'
-                            + '<td>' + this.CompanyId + '</td>'
-                            + '<td>' + this.Cname + '</td>'
-                            + '<td>' + this.Salesman + '</td>'
-                            + '<td>' + this.CreateTime + '</td>'
-                            + '<td><input id="Submit1" type="submit" value="删除" onclick="Del(' + this.CompanyId + ',this)" /><input id="Button1" type="button" value="详情" onclick="Upt(' + this.CompanyId + ')" /></td > '
-                            + '</tr>'
-                        $("#td").append(line);
-                    })
-                }
-            })
+<h2>公司信息</h2>
+<div>
+    <input style=" " id="Button1" type="button" value="添加公司" onclick="location.href='/Company/Create'" />
+    <input id="Submit1" type="submit" value="批量删除" onclick="DelAll(id)" />
+</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div>
+    公司名称：<input id="name" type="text" />
+    <input id="Button1" type="button" value="查询" onclick="Sel()" />
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th><input id="top" class="top" type="checkbox" onclick="alldel()" /></th>
+            <th>ID</th>
+            <th>公司名称</th>
+            <th>销售员</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody id="td"></tbody>
+</table>
+<script>
+    $(function () {
+        $.ajax({
+            url: 'http://localhost:44319/api/Company/GetCompanyList',
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                $("#td").empty();
+                $(data).each(function () {
+                    var line = '<tr><td><input type="checkbox" class="ckdel" id=' + this.CompanyId + ' /></td>'
+                        + '<td>' + this.CompanyId + '</td>'
+                        + '<td>' + this.Cname + '</td>'
+                        + '<td>' + this.Salesman + '</td>'
+                        + '<td>' + this.CreateTime + '</td>'
+                        + '<td><input id="Submit1" type="submit" value="删除" onclick="Del(' + this.CompanyId + ',this)" /><input id="Button1" type="button" value="详情" onclick="Upt(' + this.CompanyId + ')" /></td > '
+                        + '</tr>'
+                    $("#td").append(line);
+                })
+            }
         })
-        function Sel() {
-            var name = $("#name").val();
+    })
+    function Sel() {
+        var name = $("#name").val();
+        $.ajax({
+            url: 'http://localhost:44319/api/Company/GetCompany',
+            type: 'get',
+            data: { name: name },
+            success: function (data) {
+                $("#td").empty();
+                $(data).each(function () {
+                    var line = '<tr><td><input type="checkbox" class="ckdel" id=' + this.CompanyId + ' /></td>'
+                        + '<td>' + this.CompanyId + '</td>'
+                        + '<td>' + this.Cname + '</td>'
+                        + '<td>' + this.Salesman + '</td>'
+                        + '<td>' + this.CreateTime + '</td>'
+                        + '<td><input id="Submit1" type="submit" value="删除" onclick="Del(' + this.CompanyId + ',this)" /><input id="Button1" type="button" value="修改" onclick="Upt(' + this.CompanyId + ')" /></td > '
+                        + '</tr>'
+                    $("#td").append(line);
+                })
+            }
+        })
+    }
+    function Del(CompanyId) {
+        if (confirm("确认要删除吗？")) {
             $.ajax({
-                url: 'http://localhost:44319/api/Company/GetCompany',
+                url: 'http://localhost:44319/api/Company/DelCompany/' + CompanyId,
                 type: 'get',
-                data: { name: name },
                 success: function (data) {
-                    $("#td").empty();
-                    $(data).each(function () {
-                        var line = '<tr><td><input type="checkbox" class="ckdel" id=' + this.CompanyId + ' /></td>'
-                            + '<td>' + this.CompanyId + '</td>'
-                            + '<td>' + this.Cname + '</td>'
-                            + '<td>' + this.Salesman + '</td>'
-                            + '<td>' + this.CreateTime + '</td>'
-                            + '<td><input id="Submit1" type="submit" value="删除" onclick="Del(' + this.CompanyId + ',this)" /><input id="Button1" type="button" value="修改" onclick="Upt(' + this.CompanyId + ')" /></td > '
-                            + '</tr>'
-                        $("#td").append(line);
-                    })
+                    if (data > 0) {
+
+                        alert("删除成功");
+                        location.href = "/Companies/Index";
+                    }
+                    else {
+                        alert("删除失败");
+                    }
                 }
             })
         }
-        function Del(CompanyId) {
-            if (confirm("确认要删除吗？")) {
-                $.ajax({
-                    url: 'http://localhost:44319/api/Company/DelCompany/' + CompanyId,
-                    type: 'get',
-                    success: function (data) {
-                        if (data > 0) {
-
-                            alert("删除成功");
-                            location.href = "/Companies/Index";
-                        }
-                        else {
-                            alert("删除失败");
-                        }
+    }
+    function alldel() {
+        if ($(".top").prop("checked")) {
+            $(".ckdel").prop("checked", true);
+        }
+        else {
+            $(".ckdel").each(function () {
+                this.checked = !this.checked;
+            })
+        }
+    }
+    function DelAll() {
+        if (confirm("确认删除吗？")) {
+            var ids = [];
+            $(".ckdel:checked").each(function () {
+                ids.push(this.value);
+            })
+            if (ids.length == 0) {
+                alert("请至少选中一跳记录");
+                return false;
+            }
+            $.ajax({
+                url: 'http://localhost:44319/api/Company/DelCompany/id=' + ids.toString(),
+                type: 'get',
+                success: function (data) {
+                    if (data > 0) {
+                        alert("删除成功");
                     }
-                })
-            }
-        }
-        function alldel() {
-            if ($(".top").prop("checked")) {
-                $(".ckdel").prop("checked", true);
-            }
-            else {
-                $(".ckdel").each(function () {
-                    this.checked = !this.checked;
-                })
-            }
-        }
-        function DelAll() {
-            if (confirm("确认删除吗？")) {
-                var ids = [];
-                $(".ckdel:checked").each(function () {
-                    ids.push(this.value);
-                })
-                if (ids.length == 0) {
-                    alert("请至少选中一跳记录");
-                    return false;
+                    else {
+                        alert("删除失败");
+                    }
                 }
-                $.ajax({
-                    url: 'http://localhost:44319/api/Company/DelCompany/id=' + ids.toString(),
-                    type: 'get',
-                    success: function (data) {
-                        if (data > 0) {
-                            alert("删除成功");
-                            location.href = "/Index.html";
-                        }
-                        else {
-                            alert("删除失败");
-                            location.href = "/Index.html";
-                        }
-                    }
-                })
-            }
+            })
         }
+    }
 
         function Upt(Id) {
             location.href = "/Company/Update/" + Id;

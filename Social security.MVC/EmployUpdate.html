@@ -37,7 +37,7 @@
                  success: function (d) {
                      if (d > 0) {
                          alert("修改成功");
-                         location.href = '/Index.html';
+                         location.href = '/Employee.html';
                      }
                      else {
                          alert("修改失败");
@@ -75,8 +75,8 @@
             </div>
             <div style="margin-bottom:15px;">
                 <label>公司:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                <select id="Select1" onchange="change_Select1()">
-                    <option value="-1">==请选择==</option>
+                <select id="Select1" onchange="change_Select1()" name="EmploySex">
+                    <option value="">==请选择==</option>
                 </select>
             </div>
             <div style="margin-bottom:15px;"><label>联系电话:</label>&nbsp<input type="text" class="form-control" id="TexPhone" placeholder="请输入联系方式"></div>

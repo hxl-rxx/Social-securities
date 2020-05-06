@@ -20,7 +20,6 @@ namespace Social_security.MVC.Controllers
         [HttpPost]
         public void Login(string name,string pwd ,string validCode)
         {
-            
             if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(pwd) && !string.IsNullOrEmpty(validCode))
             {
                 var sessionValidCode = Session["validCode"].ToString();
@@ -30,7 +29,6 @@ namespace Social_security.MVC.Controllers
                     if (i>0)
                     {
                         Session["name"] = name;
-                        Cookie cookie = new Cookie("uname", name);
                         Response.Write("<script>alert('登录成功！');location.href='/Index.html'</script>");
                     }
                     else
@@ -110,6 +108,15 @@ namespace Social_security.MVC.Controllers
             Session["validCode"] = strRandom;
             //把图片返回视图
             return File(byteImg, @"image/jepg");
+        }
+
+        public string RemberName()
+        {
+            if (Session["name"] != null)
+            {
+                return Session["name"].ToString();
+            }
+            return "";
         }
     }
 }

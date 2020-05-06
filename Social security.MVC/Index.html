@@ -18,12 +18,12 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" id="login">
-                    <li>
+                    <!--<li>
                         <a></a>
                     </li>
                     <li>
                         <a href="#" onclick="location.href='/Login/Login'">安全退出</a>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
         </div>
@@ -43,7 +43,7 @@
                 <a href="#" class="list-group-item" onclick="loadPage('/Company/Index')">
                     公司信息
                 </a>
-                <a href="#" class="list-group-item" onclick="loadPage()">
+                <a href="#" class="list-group-item" onclick="loadPage('/PayInfo.html')">
                     缴费信息
                 </a>
             </div>
@@ -157,7 +157,34 @@
             //e.preventDefault();    加上这句则导航的<a>标签会失效
             $('#menulist> a').removeClass('active');
             $(this).addClass('active');
+
+            
         });
+
+        $(function () {
+            $.ajax({
+                url: "/Login/RemberName",
+                type: "get",
+                success: function (d) {
+                    $("#login").empty();
+                    if (d != null && d != "") {
+                        var data = '<li>'
+                            + '<a>欢迎您,' + d + '</a>'
+                            + '</li >'
+                            + '<li>'
+                            + '<a href="/Login/Login" >安全退出</a>'
+                            + '</li>'
+                        $("#login").append(data);
+                    }
+                    else {
+                        var data = '<li>'
+                            + '<a href="/Login/Login">登录</a>'
+                            + '</li >'
+                        $("#login").append(data);
+                    }
+                }
+            })
+        })
         // Cookie.get("uname")
         //var cookie = $.cookie("uname");
         //if (cookie != null || cookie != "") {

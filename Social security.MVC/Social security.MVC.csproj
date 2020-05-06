@@ -150,6 +150,7 @@
     <Content Include="js\js.cookie.js" />
     <Content Include="Login.html" />
     <Content Include="Page.html" />
+    <Content Include="PayInfo.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />

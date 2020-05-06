@@ -37,7 +37,7 @@
                  success: function (d) {
                      if (d > 0) {
                          alert("修改成功");
-                         location.href = '/Employee.html';
+                         location.href = '/Index.html';
                      }
                      else {
                          alert("修改失败");
@@ -50,13 +50,13 @@
          })
          function change_Select1() {
              $.ajax({
-                 url: "http://localhost:44319/api/Company/companies",
-                 type: "POST",
+                 url: "http://localhost:44319/api/Company/GetCompanyList",
+                 type: "get",
                  dataType: "json",
                  success: function (data) {
-                     $("#body").empty();
+                     $("#Select1").empty();
                      $(data).each(function () {
-                         var line = '<option value=' + this.Companyid + '>' + this.Cname + '</option>'
+                         var line = '<option value=' + this.CompanyId + '>' + this.Cname + '</option>'
                          $("#Select1").append(line);
                      })
                  }
@@ -83,7 +83,7 @@
             <div style="margin-bottom:15px;"><label>住址:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="TexAdd" placeholder="请输入住址"></div>
             <div>
                 <input id="Button1" type="button" value="提交" onclick="AddEmploy()" class="btn btn-success" />
-                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input id="Button1" type="button" value="返回" onclick="location.href='/Employee.html'" class="btn btn-danger" />
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input id="Button1" type="button" value="返回" onclick="location.href='/Index.html'" class="btn btn-danger" />
             </div>
         </form>
     </div>

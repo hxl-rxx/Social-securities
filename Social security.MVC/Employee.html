@@ -72,7 +72,7 @@
                 success: function (d) {
                     if (d > 0) {
                         alert("删除成功");
-                        location.href = '/Employee.html';
+                        location.href = '/Index.html';
                     }
                 }
             })
@@ -235,6 +235,14 @@
     </style>
 </head>
 <body>
+    <ol class="breadcrumb">
+        <li class="active">
+            菜单
+        </li>
+        <li class="active">
+            员工信息
+        </li>
+    </ol>
     <div class="panel-body">
         <form role="form" class="form-inline">
             <div class="form-group" style="float:right"><input id="Button1" type="button" value="查询" onclick="ReEmploy()" class="btn btn-primary" /></div>
@@ -262,11 +270,11 @@
         <span class="page-current">1</span>
         <a href="#">2</a>
         <a href="#">3</a>
-        <a href="#">4</a>  
+        <a href="#">4</a>
         <a class="page-next" href="#">下一页<i></i></a>
         <a class="page-last" href="#">尾页<i></i></a>
     </div>
 
-   
+
 </body>
 </html>

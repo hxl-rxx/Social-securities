@@ -21,8 +21,15 @@
         border-radius: 15px;
         box-shadow: 0 9px #999;
     }
-
-<h2>公司信息</h2>
+</style>
+<ol class="breadcrumb">
+    <li class="active">
+        菜单
+    </li>
+    <li class="active">
+        公司信息
+    </li>
+</ol>
 <div>
     <input style=" " id="Button1" type="button" value="添加公司" onclick="location.href='/Company/Create'" />
     <input id="Submit1" type="submit" value="批量删除" onclick="DelAll(id)" />
@@ -58,7 +65,7 @@
                         + '<td>' + this.CompanyId + '</td>'
                         + '<td>' + this.Cname + '</td>'
                         + '<td>' + this.Salesman + '</td>'
-                        + '<td>' + this.CreateTime + '</td>'
+                        + '<td>' + this.CreateTime.toString("yyyy-MM-dd") + '</td>'
                         + '<td><input id="Submit1" type="submit" value="删除" onclick="Del(' + this.CompanyId + ',this)" /><input id="Button1" type="button" value="详情" onclick="Upt(' + this.CompanyId + ')" /></td > '
                         + '</tr>'
                     $("#td").append(line);

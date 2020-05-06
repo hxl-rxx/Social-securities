@@ -6,11 +6,36 @@
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<style>
+    #Button1 {
+        display: inline-block;
+        padding: 5px 10px;
+        font-size: 17px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #32ab68;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
+    }
 
+        #Button1:hover {
+            background-color: #32ab68
+        }
+
+        #Button1:active {
+            background-color: darkgray;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+</style>
 <h2>公司信息</h2>
-<div>
+<div id="div1">
     <input style=" " id="Button1" type="button" value="添加公司" onclick="location.href='/Company/Create'" />
-    <input id="Submit1" type="submit" value="批量删除" onclick="DelAll(id)" />
+    <input id="Submit1" type="submit" value="批量删除" onclick="DelAll(id)" class="btn btn-danger" />
 </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <div>
@@ -39,12 +64,12 @@
             success: function (data) {
                 $("#td").empty();
                 $(data).each(function () {
-                    var line = '<tr><td><input type="checkbox" class="ckdel" id=' + this.CompanyId + ' /></td>'
-                        + '<td>' + this.CompanyId + '</td>'
+                    var line = '<tr><td><input type="checkbox" class="ckdel" id=' + this.Companyid + ' /></td>'
+                        + '<td>' + this.Companyid + '</td>'
                         + '<td>' + this.Cname + '</td>'
                         + '<td>' + this.Salesman + '</td>'
                         + '<td>' + this.CreateTime + '</td>'
-                        + '<td><input id="Submit1" type="submit" value="删除" onclick="Del(' + this.CompanyId + ',this)" /><input id="Button1" type="button" value="详情" onclick="Upt(' + this.CompanyId + ')" /></td > '
+                        + '<td><input id="Submit1" type="submit" value="删除" onclick="Del(' + this.Companyid + ',this)" /><input id="Button1" type="button" value="详情" onclick="Upt(' + this.Companyid + ')" /></td > '
                         + '</tr>'
                     $("#td").append(line);
                 })
@@ -60,12 +85,12 @@
             success: function (data) {
                 $("#td").empty();
                 $(data).each(function () {
-                    var line = '<tr><td><input type="checkbox" class="ckdel" id=' + this.CompanyId + ' /></td>'
-                        + '<td>' + this.CompanyId + '</td>'
+                    var line = '<tr><td><input type="checkbox" class="ckdel" id=' + this.Companyid + ' /></td>'
+                        + '<td>' + this.Companyid + '</td>'
                         + '<td>' + this.Cname + '</td>'
                         + '<td>' + this.Salesman + '</td>'
                         + '<td>' + this.CreateTime + '</td>'
-                        + '<td><input id="Submit1" type="submit" value="删除" onclick="Del(' + this.CompanyId + ',this)" /><input id="Button1" type="button" value="修改" onclick="Upt(' + this.CompanyId + ')" /></td > '
+                        + '<td><input id="Submit1" type="submit" value="删除" onclick="Del(' + this.Companyid + ',this)" /><input id="Button1" type="button" value="修改" onclick="Upt(' + this.Companyid + ')" /></td > '
                         + '</tr>'
                     $("#td").append(line);
                 })
@@ -107,7 +132,7 @@
                 ids.push(this.value);
             })
             if (ids.length == 0) {
-                alert("请至少选中一跳记录");
+                alert("请至少选中一条记录");
                 return false;
             }
             $.ajax({

@@ -5,64 +5,66 @@
     <title></title>
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <script src="Scripts/jquery-3.4.1.min.js"></script>
-     <script>
-         var path = location.href;
-         var list = path.split("?id=");
-         var str = list[1];
-         $.ajax({
-             url: 'http://localhost:44319/api/Employee/PutEmployees?id=' + str,
-             type: 'get',
-             success: function (d) {
-                 $("#TexName").val(d.Name),
-                     $("#TexCard").val(d.IDCard),
-                     $('input[name="sex"]').get(d.Sex).checked="checked";
-                     $("#Select1").val(d.Cid).attr('selected="selected"'),
-                     $("#TexPhone").val(d.Tel),
-                     $("#TexAdd").val(d.Address)
-             }
-         })
-         function UptEmploy() {
-             var s = {};
-             s.Name = $("#TexName").val();
-             s.IDCard = $("#TexCard").val();
-             s.Sex = $('input[name="sex"]:checked').val();
-             s.Cid = $('#Select1 option:selected').val()
-             s.Tel = $("#TexPhone").val();
-             s.Address = $("#TexAdd").val();
-             s.ID = MessId;
-             $.ajax({
-                 url: 'http://localhost:44319/api/Employee/UptEmployees',
-                 type: 'post',
-                 data: s,
-                 success: function (d) {
-                     if (d > 0) {
-                         alert("修改成功");
-                         location.href = '/Employee.html';
-                     }
-                     else {
-                         alert("修改失败");
-                     }
-                 }
-             })
-         }
-         $(function () {
-             change_Select1();
-         })
-         function change_Select1() {
-             $.ajax({
-                 url: "http://localhost:44319/api/Company/companies",
-                 type: "POST",
-                 dataType: "json",
-                 success: function (data) {
-                     $("#body").empty();
-                     $(data).each(function () {
-                         var line = '<option value=' + this.Companyid + '>' + this.Cname + '</option>'
-                         $("#Select1").append(line);
-                     })
-                 }
-             })
-         }
-     </script>
+    <script>
+        var path = location.href;
+        var list = path.split("?id=");
+        var str = list[1];
+        $.ajax({
+            url: 'http://localhost:44319/api/Employee/PutEmployees?id=' + str,
+            type: 'get',
+            success: function (d) {
+                $("#TexName").val(d.Name),
+                $("#TexCard").val(d.IDCard),
+                    $("input[name=sex][value=" + d.Sex + "]").attr("checked", "checked"),
+                    $("#Select1").val(d.Cid).attr("selected","selected"), 
+                $("#TexPhone").val(d.Tel),
+                    $("#TexAdd").val(d.Address)
+               
+                
+            }
+        })
+        function UptEmploy() {
+            var s = {};
+            s.Name = $("#TexName").val();
+            s.IDCard = $("#TexCard").val();
+            s.Sex = $('input[name="sex"]:checked').val();
+            s.Cid = $('#Select1 option:selected').val()
+            s.Tel = $("#TexPhone").val();
+            s.Address = $("#TexAdd").val();
+            s.ID = MessId;
+            $.ajax({
+                url: 'http://localhost:44319/api/Employee/UptEmployees',
+                type: 'post',
+                data: s,
+                success: function (d) {
+                    if (d > 0) {
+                        alert("修改成功");
+                        location.href = '/Employee.html';
+                    }
+                    else {
+                        alert("修改失败");
+                    }
+                }
+            })
+        }
+        $(function () {
+            change_Select1();
+        })
+        function change_Select1() {
+            $.ajax({
+                url: "http://localhost:44319/api/Company/GetCompanyList",
+                type: 'get',
+                dataType: "json",
+                success: function (data) {
+                    $("#body").empty();
+                    $(data).each(function () {
+                        var line = '<option value=' + this.Companyid + '>' + this.Cname + '</option>'
+                        $("#Select1").append(line);
+                    })
+                }
+            })
+        }
+    </script>
 </head>
 <body>
     <div class="panel-body">
@@ -75,8 +77,8 @@
             </div>
             <div style="margin-bottom:15px;">
                 <label>公司:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                <select id="Select1" onchange="change_Select1()">
-                    <option value="-1">==请选择==</option>
+                <select id="Select1" onchange="change_Select1()" name="EmploySex">
+                    <option value="">==请选择==</option>
                 </select>
             </div>
             <div style="margin-bottom:15px;"><label>联系电话:</label>&nbsp<input type="text" class="form-control" id="TexPhone" placeholder="请输入联系方式"></div>

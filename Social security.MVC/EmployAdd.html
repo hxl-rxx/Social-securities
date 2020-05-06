@@ -5,50 +5,49 @@
     <title></title>
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <script src="Scripts/jquery-3.4.1.min.js"></script>
-
-  <script></script>
     <script>
-        function AddEmploy() {
-            var s = {};
-            s.Name = $("#TexName").val();
-            s.IDCard = $("#TexCard").val();
-            s.Sex = $('input[name="sex"]:checked').val();
-            s.Cid = $('#Select1 option:selected').val()
-            s.Tel = $("#TexPhone").val();
-            s.Address = $("#TexAdd").val();
-            $.ajax({
-                url: 'http://localhost:44319/api/Employee/AddEmployees',
-                type: 'post',
-                data: s,
-                success: function (d) {
-                    if (d > 0) {
-                        alert('添加成功');
-                        location.href = '/Employee.html';
-                    }
-                    else {
-                        alert('添加失败');
-                    }
+    function AddEmploy() {
+        var s = {};
+        s.Name = $("#TexName").val();
+        s.IDCard = $("#TexCard").val();
+        s.Sex = $('input[name="sex"]:checked').val();
+        s.Cid = $('#Select1 option:selected').val()
+        s.Tel = $("#TexPhone").val();
+        s.Address = $("#TexAdd").val();
+        $.ajax({
+            url: 'http://localhost:44319/api/Employee/AddEmployees',
+            type: 'post',
+            data: s,
+            success: function (d) {
+                if (d > 0) {
+                    alert('添加成功');
+                    location.href = '/Employee.html';
                 }
-            })
-        }
-        $(function () {
-            change_Select1();
+                else {
+                    alert('添加失败');
+                }
+            }
         })
-        function change_Select1() {
-            $.ajax({
-                url: "http://localhost:44319/api/Company/companies",
-                type: "POST",
-                dataType: "json",
-                success: function (data) {
-                    $("#body").empty();
-                    $(data).each(function () {
-                        var line = '<option value=' + this.Companyid + '>' + this.Cname + '</option>'
-                        $("#Select1").append(line);
-                    })
-                }
-            })
-        }
+    }
+    $(function () {
+        change_Select1();
+    })
+    function change_Select1() {
+        $.ajax({
+            url: "http://localhost:44319/api/Company/GetCompanyList",
+            type: 'get',
+            dataType: "json",
+            success: function (data) {
+                $("#body").empty();
+                $(data).each(function () {
+                    var line = '<option value=' + this.Companyid + '>' + this.Cname + '</option>'
+                    $("#Select1").append(line);
+                })
+            }
+        })
+    }
     </script>
+
 </head>
 <body>
     <div class="panel-body">
@@ -62,14 +61,14 @@
             <div style="margin-bottom:15px;">
                 <label>公司:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 <select id="Select1" onchange="change_Select1()">
-                    <option value="-1">==请选择==</option>
+                    <option value="">==请选择==</option>
                 </select>
             </div>
             <div style="margin-bottom:15px;"><label>联系电话:</label>&nbsp<input type="text" class="form-control" id="TexPhone" placeholder="请输入联系方式"></div>
             <div style="margin-bottom:15px;"><label>住址:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="TexAdd" placeholder="请输入住址"></div>
             <div>
                 <input id="Button1" type="button" value="提交" onclick="AddEmploy()" class="btn btn-success" />
-                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input id="Button1" type="button" value="返回" onclick="location.href='/Employee.html'" class="btn btn-danger" />
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input id="Button1" type="button" value="返回" onclick="location.href='/EmployIndex.html'" class="btn btn-danger" />
             </div>
         </form>
     </div>

@@ -22,7 +22,7 @@
     </tr>
     <tr>
         <td><input id="button1" type="button" value="提交" onclick="Addcompany()" /></td>
-        <td><input id="button1" type="button" value="取消" onclick="location.href='/Companies/Create'" /></td>
+        <td><input id="button1" type="button" value="取消" onclick="location.href='/Index.html'" /></td>
     </tr>
 </table>
 <script>
@@ -34,7 +34,7 @@
             data: obj,
             success: function (data) {
                 alert("添加成功");
-                location.href = '/Company/Index';
+                location.href = '/Index.html';
             },
             error: function (data) {
                 alert(data);

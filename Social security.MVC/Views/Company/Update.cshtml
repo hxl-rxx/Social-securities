@@ -22,7 +22,7 @@
     </tr>
     <tr>
         <td><input id="button1" type="button" value="提交" onclick="uptcompany()" /></td>
-        <td><input id="button1" type="button" value="返回" onclick="location.href='Companies/Index'" /></td>
+        <td><input id="button1" type="button" value="返回" onclick="location.href='/Index.html'" /></td>
     </tr>
 </table>
 <script>
@@ -58,7 +58,7 @@
             success: function (d) {
                 if (d > 0) {
                     alert("修改成功！");
-                    location.href="/Company/Index";
+                    location.href="/Index.html";
                 }
             }
         })

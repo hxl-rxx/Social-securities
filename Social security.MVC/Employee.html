@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>员工明细表</title>
@@ -68,7 +68,7 @@
                 success: function (d) {
                     if (d > 0) {
                         alert("删除成功");
-                        location.href = '/Employee.html';
+                        location.href = '/Index.html';
                     }
                 }
             })
@@ -126,39 +126,48 @@
         </style>
 </head>
 <body>
-    <div class="panel-body">
-        <form role="form" class="form-inline">
-            <div class="form-group" style="float:right"><input id="Button1" type="button" value="查询" onclick="ReEmploy()" class="btn btn-primary" /></div>
-            <div class="form-group" style="float:right"><input type="text" class="form-control" id="TexName" placeholder="请输入姓名"></div>
-        </form>
-    </div>
-    <div class="table-responsive">
-        <table class="table table-striped" id="table1">
-            <thead>
-                <tr>
-                    <th>员工ID</th>
-                    <th>员工姓名</th>
-                    <th>性别</th>
-                    <th>公司名称</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody id="body">
-            </tbody>
-        </table>
-    </div>
-    <div class="page-icon">
-        <span class="page-first"><i></i>首页</span>
-        <span class="page-disabled"><i></i>上一页</span>
-        <span class="page-current">1</span>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>  
-        <a class="page-next" href="#">下一页<i></i></a>
-        <a class="page-last" href="#">尾页<i></i></a>
-    </div>
+    <div class="col-sm-12 column">
+        <ol class="breadcrumb">
+            <li class="active">
+                菜单
+            </li>
+            <li class="active">
+                员工信息
+            </li>
+        </ol>
+        <div class="panel-body">
+            <form role="form" class="form-inline">
+                <div class="form-group" style="float:right"><input id="Button1" type="button" value="查询" onclick="ReEmploy()" class="btn btn-primary" /></div>
+                <div class="form-group" style="float:right"><input type="text" class="form-control" id="TexName" placeholder="请输入姓名"></div>
+            </form>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped" id="table1">
+                <thead>
+                    <tr>
+                        <th>员工ID</th>
+                        <th>员工姓名</th>
+                        <th>性别</th>
+                        <th>公司名称</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="body">
+                </tbody>
+            </table>
+        </div>
+        <div class="page-icon">
+            <span class="page-first"><i></i>首页</span>
+            <span class="page-disabled"><i></i>上一页</span>
+            <span class="page-current">1</span>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a class="page-next" href="#">下一页<i></i></a>
+            <a class="page-last" href="#">尾页<i></i></a>
+        </div>
 
-   
+        </div>
 </body>
 </html>
 

@@ -21,7 +21,7 @@
                         + '<td>' + this.Name + '</td>'
                         + '<td>' + Sexd(this.Sex) + '</td>'
                         + '<td>' + this.Companys.Cname + '</td>'
-                        + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger" />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" /></td>'
+                        + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger"  />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" /></td>'
                         + '</tr>'
                     $("#body").append(line);
                 })
@@ -53,7 +53,7 @@
                         + '<td>' + this.Name + '</td>'
                         + '<td>' + Sexd(this.Sex) + '</td>'
                         + '<td>' + this.Companys.Cname + '</td>'
-                        + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger" /> &nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" /></td>'
+                        + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger"   /> &nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" /></td>'
                         + '</tr>'
                     $("#body").append(line);
 
@@ -149,10 +149,9 @@
         }
         #div1 {
             border-radius: 25px;
-            background:#adddc7;
+            background: #adddc7;
             padding: 20px;
-            width: 1100px;
-           
+            width: 1550px;
         }
 
         #div1 {
@@ -160,8 +159,7 @@
             background-position: left top;
             background-repeat: repeat;
             padding: 20px;
-            width: 1100px;
-         
+            width: 1550px;
         }
         .page-icon {
             margin: 20px 0 0 0;
@@ -224,7 +222,9 @@
         <form role="form" class="form-inline">
             <div class="form-group" style="float:right"><input id="Button1" type="button" value="查询" onclick="ReEmploy()" /></div>
             <div class="form-group" style="float:right"><input type="text" class="form-control" id="TexName" placeholder="请输入姓名"></div>
-            <div class="form-group" style="float:left"><input id="Button1" type="button" value="添加员工" onclick="location.href='/EmployAdd.html'" /></div>
+            <button id="btn_add" type="button" class="btn btn-success" onclick="location.href='/EmployAdd.html'" >
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增员工
+            </button>
         </form>
     </div>
     <div class="table-responsive" id="div1">
@@ -243,7 +243,9 @@
             </tbody>
         </table>
     </div>
-    <div class="form-group" style="float:left;padding-left:20px;padding-top:10px"><input id="Button2" type="button" value="批量删除" onclick="AllDelete()" class="btn btn-danger" /></div>
+    <div class="form-group" style="float:left;padding-left:20px;padding-top:10px"><button id="btn_add" type="button" class="btn btn-danger" onclick="AllDelete()">
+    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>批量删除
+</button></div>
     <div class="page-icon">
         <a class="page-first"><i></i>首页</a>
         <a class="page-disabled"><i></i>上一页</a>

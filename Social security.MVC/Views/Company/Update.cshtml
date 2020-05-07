@@ -34,7 +34,7 @@
         $.ajax({
             url: 'http://localhost:44319/api/Company/GetCompanyList',
             dataType: "json",
-            data: { Id: id },
+            data: { id: id },
             success: function (data) {
                 //console.log(data);
                 $("#txtname").val(data[0].Cname),

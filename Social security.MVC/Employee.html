@@ -212,14 +212,22 @@
     </style>
 </head>
 <body>
+    <ol class="breadcrumb">
+        <li class="active">
+            菜单
+        </li>
+        <li class="active">
+            员工信息
+        </li>
+    </ol>
     <div class="panel-body">
         <form role="form" class="form-inline">
             <div class="form-group" style="float:right"><input id="Button1" type="button" value="查询" onclick="ReEmploy()" /></div>
             <div class="form-group" style="float:right"><input type="text" class="form-control" id="TexName" placeholder="请输入姓名"></div>
-            <div class="form-group" style="float:left"><input id="Button1" type="button" value="添加员工" onclick="location.href='/EmployAdd.html'"/></div>
+            <div class="form-group" style="float:left"><input id="Button1" type="button" value="添加员工" onclick="location.href='/EmployAdd.html'" /></div>
         </form>
     </div>
-    <div class="table-responsive" id="div1" >
+    <div class="table-responsive" id="div1">
         <table class="table table-striped" id="table1">
             <thead>
                 <tr>

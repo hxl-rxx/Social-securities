@@ -46,11 +46,20 @@
     }
 </style>
 
+<ol class="breadcrumb">
+    <li class="active">
+        菜单
+    </li>
+    <li class="active">
+        公司信息
+    </li>
+</ol>
+
 <div class="panel-body">
     <form role="form" class="form-inline">
         <div class="form-group" style="float:right"><input id="Button1" type="button" value="查询" onclick="Sel()" /></div>
         <div class="form-group" style="float:right"><input type="text" class="form-control" id="name" placeholder="请输入公司名称"></div>
-        <div class="form-group" style="float:left"><input id="Button1" type="button" value="添加员工" onclick="location.href='/EmployAdd.html'" /></div>
+        <div class="form-group" style="float:left"><input id="Button1" type="button" value="添加公司" onclick="location.href='/EmployAdd.html'" /></div>
     </form>
 </div>
 <div class="table-responsive" id="div1">
@@ -79,11 +88,11 @@
                 $("#td").empty();
                 $(data).each(function () {
                     var line = '<tr><td><input type="checkbox" class="ckdel" id=' + this.CompanyId + ' /></td>'
-                        + '<td>' + this.Companyid + '</td>'
+                        + '<td>' + this.CompanyId + '</td>'
                         + '<td>' + this.Cname + '</td>'
                         + '<td>' + this.Salesman + '</td>'
                         + '<td>' + this.CreateTime.toString("yyyy-MM-dd") + '</td>'
-                        + '<td><input id="btn1" type="button" value="删除" onclick="Del(' + this.Companyid + ',this)" class="btn btn-danger" />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="修改" onclick="Upt(' + this.Companyid + ')" class="btn btn-success" /></td > '
+                        + '<td><input id="btn1" type="button" value="删除" onclick="Del(' + this.CompanyId + ',this)" class="btn btn-danger" />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="修改" onclick="Upt(' + this.CompanyId + ')" class="btn btn-success" /></td > '
                         + '</tr>'
                     $("#td").append(line);
                 })
@@ -100,11 +109,11 @@
                 $("#td").empty();
                 $(data).each(function () {
                     var line = '<tr><td><input type="checkbox" class="ckdel" id=' + this.CompanyId + ' /></td>'
-                        + '<td>' + this.Companyid + '</td>'
+                        + '<td>' + this.CompanyId + '</td>'
                         + '<td>' + this.Cname + '</td>'
                         + '<td>' + this.Salesman + '</td>'
                         + '<td>' + this.CreateTime + '</td>'
-                        + '<td><input id="btn1" type="button" value="删除" onclick="Del(' + this.Companyid + ',this)" class="btn btn-danger" />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="修改" onclick="Upt(' + this.Companyid + ')" class="btn btn-success" /></td > '
+                        + '<td><input id="btn1" type="button" value="删除" onclick="Del(' + this.CompanyId + ',this)" class="btn btn-danger" />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="修改" onclick="Upt(' + this.CompanyId + ')" class="btn btn-success" /></td > '
                         + '</tr>'
                     $("#td").append(line);
                 })
@@ -120,7 +129,7 @@
                     if (data > 0) {
 
                         alert("删除成功");
-                        location.href = "/Companies/Index";
+                        location.href = "/Index.html";
                     }
                     else {
                         alert("删除失败");

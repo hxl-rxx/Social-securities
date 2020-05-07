@@ -34,7 +34,7 @@
         border-radius: 25px;
         background: #adddc7;
         padding: 20px;
-        width: 1100px;
+        width: 1550px;
     }
 
     #div1 {
@@ -42,7 +42,7 @@
         background-position: left top;
         background-repeat: repeat;
         padding: 20px;
-        width: 1100px;
+        width: 1550px;
     }
 </style>
 
@@ -50,7 +50,9 @@
     <form role="form" class="form-inline">
         <div class="form-group" style="float:right"><input id="Button1" type="button" value="查询" onclick="Sel()" /></div>
         <div class="form-group" style="float:right"><input type="text" class="form-control" id="name" placeholder="请输入公司名称"></div>
-        <div class="form-group" style="float:left"><input id="Button1" type="button" value="添加员工" onclick="location.href='/EmployAdd.html'" /></div>
+        <button id="btn_add" type="button" class="btn btn-success" onclick="location.href='/Company/Create'">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增公司
+        </button>
     </form>
 </div>
 <div class="table-responsive" id="div1">
@@ -68,7 +70,11 @@
         <tbody id="td"></tbody>
     </table>
 </div>
-<div class="form-group" style="float:left;padding-left:20px;padding-top:10px"><input id="Button2" type="button" value="批量删除" onclick="DelAll()" class="btn btn-danger" /></div>
+<div class="form-group" style="float:left;padding-left:20px;padding-top:10px">
+    <button id="btn_add" type="button" class="btn btn-danger" onclick="DelAll()">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>批量删除
+    </button>
+</div>
 <script>
     $(function () {
         $.ajax({

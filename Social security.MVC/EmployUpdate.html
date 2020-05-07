@@ -15,8 +15,12 @@
              success: function (d) {
                  $("#TexName").val(d.Name),
                      $("#TexCard").val(d.IDCard),
-                     $("input[name=sex][val=" + d.Sex + "]").attr("checked", "checked"),
-                     $("#Select1").val(d.Cid).attr('selected="selected"'),
+                     $("input[name=sex][value=" + d.Sex + "]").attr("checked", "checked")
+                 $("#selct option").each(function () {
+                     if (d.Cid.toString() == this.Cid) {
+                         this.selected = true;
+                     }
+                 })
                      $("#TexPhone").val(d.Tel),
                      $("#TexAdd").val(d.Address)
              }
@@ -54,10 +58,11 @@
                  type: "get",
                  dataType: "json",
                  success: function (data) {
-                     $("#Select1").empty();
+                     $("#selct").empty();
+                     $("#selct").append('<option value="0">==请选择==</option>')
                      $(data).each(function () {
-                         var line = '<option value=' + this.CompanyId + '>' + this.Cname + '</option>'
-                         $("#Select1").append(line);
+                         var line = '<option value=' + this.Companyid + '>' + this.Cname + '</option>'
+                         $("#selct").append(line);
                      })
                  }
              })
@@ -75,8 +80,7 @@
             </div>
             <div style="margin-bottom:15px;">
                 <label>公司:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                <select id="Select1" onchange="change_Select1()" name="EmploySex">
-                    <option value="">==请选择==</option>
+                <select id="selct" onchange="change_Select1()" name="Employ">
                 </select>
             </div>
             <div style="margin-bottom:15px;"><label>联系电话:</label>&nbsp<input type="text" class="form-control" id="TexPhone" placeholder="请输入联系方式"></div>

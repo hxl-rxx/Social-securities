@@ -21,7 +21,7 @@
                         + '<td>' + this.Name + '</td>'
                         + '<td>' + Sexd(this.Sex) + '</td>'
                         + '<td>' + this.Companys.Cname + '</td>'
-                        + '<td><input id="Button1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" /><input id="Button1" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" /></td>'
+                        + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger" />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" /></td>'
                         + '</tr>'
                     $("#body").append(line);
                 })
@@ -53,7 +53,7 @@
                         + '<td>' + this.Name + '</td>'
                         + '<td>' + Sexd(this.Sex) + '</td>'
                         + '<td>' + this.Companys.Cname + '</td>'
-                        + '<td><input id="Button2" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger" /> &nbsp&nbsp&nbsp&nbsp<input id="Button3" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" /></td>'
+                        + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger" /> &nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" /></td>'
                         + '</tr>'
                     $("#body").append(line);
 
@@ -61,6 +61,38 @@
 
             }
         })
+        }
+        function AllSelect() {
+            if ($(".ck").prop("checked")) {
+                $(".check").prop("checked", true);
+            }
+            else {
+                $(".check").each(function () {
+                    this.checked = !this.checked;
+                })
+            }
+        }
+        function AllDelete() {
+            if (confirm("确认删除吗？")) {
+                var id = [];
+                $(".ckdel:checked").each(function () {
+                    id.push(this.value);
+                })
+                if (id.length == 0) {
+                    alert("请至少选中一条记录");
+                    return false;
+                }
+                $.ajax({
+                    url: 'http://localhost:44319/api/Employee/DelEmployees/id=' + id.toString(),
+                    type: 'post',
+                    success: function (d) {
+                        if (d > 0) {
+                            alert("删除成功");
+                            location.href = '/Employee.html';
+                        }
+                    }
+                })
+            }
         }
         function DelEmploy(id) {
             if (!confirm('确认删除吗?')) {
@@ -106,60 +138,7 @@
                 box-shadow: 0 5px #666;
                 transform: translateY(4px);
             }
-        #Button2 
-        {
-            display: inline-block;
-            padding: 5px 10px;
-            font-size: 17px;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            outline: none;
-            color: #fff;
-            background-color:#ff0000;
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 9px #999;
-        }
-
-            #Button2:hover 
-            {
-                background-color: #ff0000
-            }
-
-            #Button2:active 
-            {
-                background-color: darkgray;
-                box-shadow: 0 5px #666;
-                transform: translateY(4px);
-            }
-        #Button3 
-        {
-            display: inline-block;
-            padding: 5px 10px;
-            font-size: 17px;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            outline: none;
-            color: #fff;
-            background-color:#32ab68;
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 9px #999;
-        }
-
-            #Button3:hover 
-            {
-                background-color: #32ab68
-            }
-
-            #Button3:active 
-            {
-                background-color: darkgray;
-                box-shadow: 0 5px #666;
-                transform: translateY(4px);
-            }
+      
        #TexName
        {
             border: 2px solid #a1a1a1;
@@ -168,24 +147,22 @@
             width:200px;
             border-radius: 25px;
         }
-        /*#div1 {
+        #div1 {
             border-radius: 25px;
-            background:#32ab68;
+            background:#adddc7;
             padding: 20px;
             width: 1100px;
-            height: 3150px;
-        }*/
+           
+        }
 
-      
-
-        /*#div1 {
+        #div1 {
             border-radius: 25px;
             background-position: left top;
             background-repeat: repeat;
             padding: 20px;
             width: 1100px;
-            height: 3150px;
-        }*/
+         
+        }
         .page-icon {
             margin: 20px 0 0 0;
             font-size: 0;
@@ -235,24 +212,18 @@
     </style>
 </head>
 <body>
-    <ol class="breadcrumb">
-        <li class="active">
-            菜单
-        </li>
-        <li class="active">
-            员工信息
-        </li>
-    </ol>
     <div class="panel-body">
         <form role="form" class="form-inline">
-            <div class="form-group" style="float:right"><input id="Button1" type="button" value="查询" onclick="ReEmploy()" class="btn btn-primary" /></div>
+            <div class="form-group" style="float:right"><input id="Button1" type="button" value="查询" onclick="ReEmploy()" /></div>
             <div class="form-group" style="float:right"><input type="text" class="form-control" id="TexName" placeholder="请输入姓名"></div>
+            <div class="form-group" style="float:left"><input id="Button1" type="button" value="添加员工" onclick="location.href='/EmployAdd.html'"/></div>
         </form>
     </div>
-    <div class="table-responsive">
+    <div class="table-responsive" id="div1" >
         <table class="table table-striped" id="table1">
             <thead>
                 <tr>
+                    <th><input class="ck" type="checkbox" onclick="AllSelect()" /></th>
                     <th>员工ID</th>
                     <th>员工姓名</th>
                     <th>性别</th>
@@ -264,13 +235,10 @@
             </tbody>
         </table>
     </div>
+    <div class="form-group" style="float:left;padding-left:20px;padding-top:10px"><input id="Button2" type="button" value="批量删除" onclick="AllDelete()" class="btn btn-danger" /></div>
     <div class="page-icon">
-        <span class="page-first"><i></i>首页</span>
-        <span class="page-disabled"><i></i>上一页</span>
-        <span class="page-current">1</span>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
+        <a class="page-first"><i></i>首页</a>
+        <a class="page-disabled"><i></i>上一页</a>
         <a class="page-next" href="#">下一页<i></i></a>
         <a class="page-last" href="#">尾页<i></i></a>
     </div>

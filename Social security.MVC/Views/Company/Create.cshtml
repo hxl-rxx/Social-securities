@@ -6,7 +6,8 @@
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-<h2>公司信息</h2>
+<script src="~/My97DatePicker/My97DatePicker/WdatePicker.js"></script>
+<h3>公司信息</h3>
 <table class="table table-bordered">
     <tr>
         <td>公司名称</td>
@@ -18,11 +19,11 @@
     </tr>
     <tr>
         <td>创建时间</td>
-        <td><input id="txtime" type="text" /></td>
+        <td><input id="txtime" type="text" onclick="WdatePicker()" /></td>
     </tr>
     <tr>
-        <td><input id="button1" type="button" value="提交" onclick="Addcompany()" /></td>
-        <td><input id="button1" type="button" value="取消" onclick="location.href='/Index.html'" /></td>
+        <td><input id="button1" type="button" value="提交" onclick="Addcompany()" class="btn btn-primary" /></td>
+        <td><input id="button1" type="button" value="取消" onclick="location.href='/Index.html'" class="btn btn-danger" /></td>
     </tr>
 </table>
 <script>

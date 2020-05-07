@@ -15,7 +15,7 @@
              success: function (d) {
                  $("#TexName").val(d.Name),
                      $("#TexCard").val(d.IDCard),
-                     $('input[name="sex"]').get(d.Sex).checked="checked";
+                     $("input[name=sex][val=" + d.Sex + "]").attr("checked", "checked"),
                      $("#Select1").val(d.Cid).attr('selected="selected"'),
                      $("#TexPhone").val(d.Tel),
                      $("#TexAdd").val(d.Address)

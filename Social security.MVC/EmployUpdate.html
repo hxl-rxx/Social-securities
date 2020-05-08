@@ -16,7 +16,7 @@
                  $("#TexName").val(d.Name),
                      $("#TexCard").val(d.IDCard),
                      $("input[name=sex][value=" + d.Sex + "]").attr("checked", "checked")
-                 $("#selct option").each(function () {
+                 $("#Select1 option").each(function () {
                      if (d.Cid.toString() == this.Cid) {
                          this.selected = true;
                      }
@@ -50,23 +50,20 @@
              })
          }
          $(function () {
-             change_Select1();
-         })
-         function change_Select1() {
              $.ajax({
                  url: "http://localhost:44319/api/Company/GetCompanyList",
                  type: "get",
                  dataType: "json",
                  success: function (data) {
-                     $("#selct").empty();
-                     $("#selct").append('<option value="0">==请选择==</option>')
+                     $("#Select1").empty();
                      $(data).each(function () {
                          var line = '<option value=' + this.Companyid + '>' + this.Cname + '</option>'
-                         $("#selct").append(line);
+                         $("#Select1").append(line);
                      })
+
                  }
              })
-         }
+         })
      </script>
 </head>
 <body>
@@ -80,7 +77,8 @@
             </div>
             <div style="margin-bottom:15px;">
                 <label>公司:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                <select id="selct" onchange="change_Select1()" name="Employ">
+                <select id="Select1" name="Employ">
+                <option value="-1">==请选择==</option>
                 </select>
             </div>
             <div style="margin-bottom:15px;"><label>联系电话:</label>&nbsp<input type="text" class="form-control" id="TexPhone" placeholder="请输入联系方式"></div>

@@ -7,7 +7,7 @@
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-    $(function () {
+        $(function () {
         $.ajax({
             url: "http://localhost:44319/api/Employee/GetEmployees",
             type: 'get',
@@ -23,9 +23,10 @@
                         + '<td>' + this.Companys.Cname + '</td>'
                         + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger"  />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" /></td>'
                         + '</tr>'
+                   
                     $("#body").append(line);
                 })
-
+          
             }
 
         })
@@ -111,7 +112,107 @@
         }
         function UptEmploy(id) {
             location.href = "/EmployUpdate.html?id=" + id;
-    }
+        }
+        function firstpage() {
+            $.ajax({
+                url: "http://localhost:44319/api/Employee/GetEmployees",
+                type: 'get',
+                dataType: 'json',
+                success: function (d) {
+                    $("#body").empty();
+                    $(d).each(function () {
+                        var line = '<tr>'
+                            + '<td><input class="check" type="checkbox" /></td>'
+                            + '<td>' + this.ID + '</td>'
+                            + '<td>' + this.Name + '</td>'
+                            + '<td>' + Sexd(this.Sex) + '</td>'
+                            + '<td>' + this.Companys.Cname + '</td>'
+                            + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger"  />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" /></td>'
+                            + '</tr>'
+
+                        $("#body").append(line);
+                    })
+
+                }
+
+            })
+        }
+
+        function lastpage() {
+            $.ajax({
+                url: "http://localhost:44319/api/Employee/GetEmployeesd",
+                type: 'get',
+                dataType: 'json',
+                success: function (d) {
+                    $("#body").empty();
+                    $(d).each(function () {
+                        var line = '<tr>'
+                            + '<td><input class="check" type="checkbox" /></td>'
+                            + '<td>' + this.ID + '</td>'
+                            + '<td>' + this.Name + '</td>'
+                            + '<td>' + Sexd(this.Sex) + '</td>'
+                            + '<td>' + this.Companys.Cname + '</td>'
+                            + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger"  />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" /></td>'
+                            + '</tr>'
+
+                        $("#body").append(line);
+                    })
+
+                }
+
+            })
+        }
+
+        function prepage() {
+
+            $.ajax({
+                url: "http://localhost:44319/api/Employee/GetEmployees",
+                type: 'get',
+                dataType: 'json',
+                success: function (d) {
+                    $("#body").empty();
+                    $(d).each(function () {
+                        var line = '<tr>'
+                            + '<td><input class="check" type="checkbox" /></td>'
+                            + '<td>' + this.ID + '</td>'
+                            + '<td>' + this.Name + '</td>'
+                            + '<td>' + Sexd(this.Sex) + '</td>'
+                            + '<td>' + this.Companys.Cname + '</td>'
+                            + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger"  />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" /></td>'
+                            + '</tr>'
+
+                        $("#body").append(line);
+                    })
+
+                }
+
+            })
+        }
+
+        function nextpage() {
+            $.ajax({
+                url: "http://localhost:44319/api/Employee/GetEmployeesd",
+                type: 'get',
+                dataType: 'json',
+                success: function (d) {
+                    $("#body").empty();
+                    $(d).each(function () {
+                        var line = '<tr>'
+                            + '<td><input class="check" type="checkbox" /></td>'
+                            + '<td>' + this.ID + '</td>'
+                            + '<td>' + this.Name + '</td>'
+                            + '<td>' + Sexd(this.Sex) + '</td>'
+                            + '<td>' + this.Companys.Cname + '</td>'
+                            + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger"  />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" /></td>'
+                            + '</tr>'
+
+                        $("#body").append(line);
+                    })
+
+                }
+
+            })
+        }
     </script>
     <style>
         #Button1 {
@@ -218,11 +319,13 @@
             员工信息
         </li>
     </ol>
+    <input type="hidden" id="pageIndex" value="1" />
+    <input type="hidden" id="pageCount" value="3" />
     <div class="panel-body">
         <form role="form" class="form-inline">
             <div class="form-group" style="float:right"><input id="Button1" type="button" value="查询" onclick="ReEmploy()" /></div>
             <div class="form-group" style="float:right"><input type="text" class="form-control" id="TexName" placeholder="请输入姓名"></div>
-            <button id="btn_add" type="button" class="btn btn-success" onclick="location.href='/EmployAdd.html'" >
+            <button id="btn_add" type="button" class="btn btn-success" onclick="location.href='/EmployAdd.html'">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增员工
             </button>
         </form>
@@ -243,14 +346,16 @@
             </tbody>
         </table>
     </div>
-    <div class="form-group" style="float:left;padding-left:20px;padding-top:10px"><button id="btn_add" type="button" class="btn btn-danger" onclick="AllDelete()">
-    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>批量删除
-</button></div>
+    <div class="form-group" style="float:left;padding-left:20px;padding-top:10px">
+        <button id="btn_add" type="button" class="btn btn-danger" onclick="AllDelete()">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>批量删除
+        </button>
+    </div>
     <div class="page-icon">
         <a class="page-first" onclick="firstpage()"><i></i>首页</a>
         <a class="page-disabled" onclick="prepage()"><i></i>上一页</a>
         <a class="page-next" onclick="nextpage()">下一页<i></i></a>
-        <a class="page-last"  onclick="lastpage()">尾页<i></i></a>
+        <a class="page-last" onclick="lastpage()">尾页<i></i></a>
     </div>
 </body>
 </html>

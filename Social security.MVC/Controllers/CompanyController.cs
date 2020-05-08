@@ -11,6 +11,7 @@ namespace Social_security.MVC.Controllers
         // GET: Company
         public ActionResult Index()
         {
+            
             return View();
         }
 

@@ -146,6 +146,8 @@
     <Content Include="Images\1001560.jpg" />
     <Content Include="Images\QQ图片20200423165223.jpg" />
     <Content Include="Images\QQ图片20200423193957.jpg" />
+    <Content Include="Images\untitled.jpg" />
+    <Content Include="Images\untitled_副本.png" />
     <Content Include="Index.html" />
     <Content Include="js\js.cookie.js" />
     <Content Include="Login.html" />

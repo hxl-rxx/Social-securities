@@ -20,7 +20,7 @@
             margin: 0;
             padding: 0;
             font-family: sans-serif;
-            background: url('../Images/QQ图片20200423193957.jpg') no-repeat center 0px;
+            background: url('../Images/批注 2020-05-08 211017.png') no-repeat center 0px;
             background-size: cover;
             background-position: center 0;
             background-repeat: no-repeat;
@@ -38,18 +38,18 @@
             transform: translate(-50%,-50%);
             width: 400px;
             padding: 40px;
-            background: rgba(0,0,0,.8);
+            background: rgba(0,0,0,.5);
             box-sizing: border-box;
-            box-shadow: 0 15px 25px rgba(0,0,0,.5);
+            box-shadow: 0 15px 25px rgba(0,0,0,.0);
             border-radius: 10px;
         }
-
-            .login-box h2 {
-                margin: 0 0 30px;
-                padding: 0;
-                text-align: center;
-                color: #fff;
-            }
+       
+        .login-box h2 {
+            margin: 0 0 30px;
+            padding: 0;
+            text-align: center;
+            color: #fff;
+        }
 
             .login-box .login-field {
                 position: relative;
@@ -109,13 +109,15 @@
                 <input type="password" name="pwd" id="pwd" required="" />
                 <label>密  码</label>
             </div>
-            <div class="login-field">
+            <div class="login-field" style="margin-bottom:12px;">
                 <input type="text" name="validCode" id="validCode" required="" />
                 <label>验证码</label>
                 <img alt="看不清，换一张" src="/Login/CreateValidCodeImage" id="validCodeImg" onclick="change()" />
             </div>
-            <button type="submit" id="submit" >登录</button>
-            <button type="button" id="submit" onclick="location.href='/Login/Register'" >注册</button>
+            <button type="submit" id="submit">登录</button>
+            &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp
+            &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp 
+            <button type="button" id="submit" onclick="location.href='/Login/Register'">注册</button>
         </form>
     </div>
 </body>

@@ -37,7 +37,7 @@
                 success: function (data) {
                     $("#Select1").empty();
                     $(data).each(function () {
-                        var line = '<option value=' + this.Companyid + '>' + this.Cname + '</option>'
+                        var line = '<option value=' + this.CompanyId + '>' + this.Cname + '</option>'
                         $("#Select1").append(line);
                     })
 

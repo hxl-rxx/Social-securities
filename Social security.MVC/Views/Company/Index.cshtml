@@ -68,7 +68,6 @@
         <thead>
             <tr>
                 <th><input id="top" class="top" type="checkbox" onclick="alldel()" /></th>
-                <th>ID</th>
                 <th>公司名称</th>
                 <th>销售员</th>
                 <th>创建时间</th>
@@ -93,7 +92,6 @@
                 $("#td").empty();
                 $(data).each(function () {
                     var line = '<tr><td><input type="checkbox" class="ckdel" id=' + this.CompanyId + ' /></td>'
-                        + '<td>' + this.Companyid + '</td>'
                         + '<td>' + this.Cname + '</td>'
                         + '<td>' + this.Salesman + '</td>'
                         + '<td>' + this.CreateTime.toString("yyyy-MM-dd") + '</td>'
@@ -114,7 +112,6 @@
                 $("#td").empty();
                 $(data).each(function () {
                     var line = '<tr><td><input type="checkbox" class="ckdel" id=' + this.CompanyId + ' /></td>'
-                        + '<td>' + this.CompanyId + '</td>'
                         + '<td>' + this.Cname + '</td>'
                         + '<td>' + this.Salesman + '</td>'
                         + '<td>' + this.CreateTime + '</td>'
@@ -179,7 +176,7 @@
     }
 
     function Upt(Id) {
-        location.href = "/Company/Update/" + Id;
+        location.href = "/Company/Update/?id=" + Id;
     }
 </script>
 

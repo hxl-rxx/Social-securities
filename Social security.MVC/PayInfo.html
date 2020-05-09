@@ -63,7 +63,6 @@
             <thead>
                 <tr>
                     <th><input id="top" type="checkbox" /></th>
-                    <th>编号</th>
                     <th>企业名称</th>
                     <th>员工名称</th>
                     <th>险种</th>
@@ -93,7 +92,6 @@
                 $(d).each(function () {
                     var line = '<tr>'
                         + '<td><input class="check" type="checkbox" /></td>'
-                        + '<td>' + this.ID + '</td>'
                         + '<td>' + this.Cname + '</td>'
                         + '<td>' + this.Name + '</td>'
                         + '<td>' + this.Iname + '</td>'
@@ -174,7 +172,6 @@
                 $(data).each(function () {
                     var line = '<tr>'
                         + '<td><input class="check" type="checkbox" /></td>'
-                        + '<td>' + this.ID + '</td>'
                         + '<td>' + this.Cname + '</td>'
                         + '<td>' + this.Name + '</td>'
                         + '<td>' + this.Iname + '</td>'

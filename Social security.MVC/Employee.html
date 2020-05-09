@@ -20,7 +20,7 @@
                         + '<td>' + this.Name + '</td>'
                         + '<td>' + Sexd(this.Sex) + '</td>'
                         + '<td>' + this.Companys.Cname + '</td>'
-                        + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger"  />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" /></td>'
+                        + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger"  />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" />&nbsp&nbsp&nbsp&nbsp<input id="btn3" type="button" value="缴费" class="btn btn-warning" onclick="pay(' + this.ID + ')" /></td>'
                         + '</tr>'
                    
                     $("#body").append(line);
@@ -40,10 +40,11 @@
     }
     function ReEmploy() {
         var name = $("#TexName").val();
+        var cid = $("#Select1").val();
         $.ajax({
             url: 'http://localhost:44319/api/Employee/GetEmployees',
             type: 'get',
-            data: { name: name },
+            data: { name: name, cid: cid },
             success: function (d) {
                 $("#body").empty();
                 $(d).each(function () {
@@ -52,7 +53,7 @@
                         + '<td>' + this.Name + '</td>'
                         + '<td>' + Sexd(this.Sex) + '</td>'
                         + '<td>' + this.Companys.Cname + '</td>'
-                        + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger"   /> &nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" /></td>'
+                        + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger"   /> &nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" />&nbsp&nbsp&nbsp&nbsp<input id="btn3" type="button" value="缴费" class="btn btn-warning" onclick="pay(' + this.ID + ')" /></td>'
                         + '</tr>'
                     $("#body").append(line);
 
@@ -61,6 +62,7 @@
             }
         })
         }
+       
         function AllSelect() {
             if ($(".ck").prop("checked")) {
                 $(".check").prop("checked", true);
@@ -124,8 +126,7 @@
                             + '<td>' + this.Name + '</td>'
                             + '<td>' + Sexd(this.Sex) + '</td>'
                             + '<td>' + this.Companys.Cname + '</td>'
-                            + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger"  />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" /></td>'
-                            + '</tr>'
+                            + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger"   /> &nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" />&nbsp&nbsp&nbsp&nbsp<input id="btn3" type="button" value="缴费" class="btn btn-warning" onclick="pay(' + this.ID + ')" /></td>'
 
                         $("#body").append(line);
                     })
@@ -148,7 +149,7 @@
                             + '<td>' + this.Name + '</td>'
                             + '<td>' + Sexd(this.Sex) + '</td>'
                             + '<td>' + this.Companys.Cname + '</td>'
-                            + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger"  />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" /></td>'
+                            + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger"   /> &nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" />&nbsp&nbsp&nbsp&nbsp<input id="btn3" type="button" value="缴费" class="btn btn-warning" onclick="pay(' + this.ID + ')" /></td>'
                             + '</tr>'
 
                         $("#body").append(line);
@@ -173,7 +174,7 @@
                             + '<td>' + this.Name + '</td>'
                             + '<td>' + Sexd(this.Sex) + '</td>'
                             + '<td>' + this.Companys.Cname + '</td>'
-                            + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger"  />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" /></td>'
+                            + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger"   /> &nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" />&nbsp&nbsp&nbsp&nbsp<input id="btn3" type="button" value="缴费" class="btn btn-warning" onclick="pay(' + this.ID + ')" /></td>'
                             + '</tr>'
 
                         $("#body").append(line);
@@ -197,7 +198,7 @@
                             + '<td>' + this.Name + '</td>'
                             + '<td>' + Sexd(this.Sex) + '</td>'
                             + '<td>' + this.Companys.Cname + '</td>'
-                            + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger"  />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" /></td>'
+                            + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger"  />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" />&nbsp&nbsp&nbsp&nbsp<input id="btn1" type="button" value="缴费" class="btn btn-warning"onclick="pay(' + this.ID + ')"  /></td>'
                             + '</tr>'
 
                         $("#body").append(line);
@@ -207,6 +208,21 @@
 
             })
         }
+        $(function () {
+            $.ajax({
+                url: "http://localhost:44319/api/Company/GetCompanyList",
+                type: "get",
+                dataType: "json",
+                success: function (data) {
+                    $("#Select1").empty();
+                    $(data).each(function () {
+                        var line = '<option value=' + this.Companyid + '>' + this.Cname + '</option>'
+                        $("#Select1").append(line);
+                    })
+
+                }
+            })
+        })
     </script>
     <style>
         #Button1 {
@@ -241,6 +257,13 @@
             background: #dddddd;
             width:200px;
             border-radius: 25px;
+        }
+        #Select1 {
+            border: 2px solid #a1a1a1;
+            padding: 10px 20px;
+            background: #dddddd;
+            width: 200px;
+            border-radius: 20px;
         }
         #div1 {
             border-radius: 25px;
@@ -317,8 +340,16 @@
     <input type="hidden" id="pageCount" value="3" />
     <div class="panel-body">
         <form role="form" class="form-inline">
+
             <div class="form-group" style="float:right"><input id="Button1" type="button" value="查询" onclick="ReEmploy()" /></div>
-            <div class="form-group" style="float:right"><input type="text" class="form-control" id="TexName" placeholder="请输入姓名"></div>
+            <div class="form-group" style="float:right">
+                <input type="text" class="form-control" id="TexName" placeholder="请输入姓名">
+                &nbsp&nbsp&nbsp <select id="Select1">
+                    <option>==请选择==</option>
+                </select>
+            </div>
+            
+           
             <button id="btn_add" type="button" class="btn btn-success" onclick="location.href='/EmployAdd.html'">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增员工
             </button>

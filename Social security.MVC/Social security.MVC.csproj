@@ -179,6 +179,7 @@
     <Content Include="My97DatePicker\My97DatePicker\开发包\skin\whyGreen\img.gif" />
     <Content Include="Page.html" />
     <Content Include="PayInfo.html" />
+    <Content Include="PayInfoAdd.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />

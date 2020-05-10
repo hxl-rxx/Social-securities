@@ -71,7 +71,7 @@
                     <th>缴纳月数</th>
                     <th>开始月份</th>
                     <th>结束月份</th>
-                    <th>操作</th>
+                   <!-- <th>操作</th>-->
                 </tr>
             </thead>
             <tbody id="body">
@@ -100,7 +100,7 @@
                         + '<td>' + this.Month + '</td>'
                         + '<td>' + this.BeginMonth + '</td>'
                         + '<td>' + this.EndMonth + '</td>'
-                        + '<td><input id="Button1" type="button" value="删除" onclick="DelPayInfo(' + this.ID + ')" class="btn btn-danger" />'
+                        //+ '<td><input id="Button1" type="button" value="删除" onclick="DelPayInfo(' + this.ID + ')" class="btn btn-danger" />'
                         + '</tr>'
                     $("#body").append(line);
                 })
@@ -180,7 +180,7 @@
                         + '<td>' + this.Month + '</td>'
                         + '<td>' + this.BeginMonth + '</td>'
                         + '<td>' + this.EndMonth + '</td>'
-                        + '<td><input id="Button1" type="button" value="删除" onclick="DelPayInfo(' + this.ID + ')" class="btn btn-danger" />'
+                        //+ '<td><input id="Button1" type="button" value="删除" onclick="DelPayInfo(' + this.ID + ')" class="btn btn-danger" />'
                         + '</tr>'
                     $("#body").append(line);
                 })

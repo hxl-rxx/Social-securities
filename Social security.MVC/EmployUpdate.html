@@ -57,7 +57,7 @@
                  success: function (data) {
                      $("#Select1").empty();
                      $(data).each(function () {
-                         var line = '<option value=' + this.Companyid + '>' + this.Cname + '</option>'
+                         var line = '<option value="' + this.Companyid + '">' + this.Cname + '</option>'
                          $("#Select1").append(line);
                      })
 
@@ -78,7 +78,6 @@
             <div style="margin-bottom:15px;">
                 <label>公司:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 <select id="Select1" name="Employ">
-                <option value="-1">==请选择==</option>
                 </select>
             </div>
             <div style="margin-bottom:15px;"><label>联系电话:</label>&nbsp<input type="text" class="form-control" id="TexPhone" placeholder="请输入联系方式"></div>

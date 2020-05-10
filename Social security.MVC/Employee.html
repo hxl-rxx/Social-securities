@@ -76,7 +76,7 @@
         function AllDelete() {
             if (confirm("确认删除吗？")) {
                 var id = [];
-                $(".ckdel:checked").each(function () {
+                $(".ckeck:checked").each(function () {
                     id.push(this.value);
                 })
                 if (id.length == 0) {
@@ -89,7 +89,7 @@
                     success: function (d) {
                         if (d > 0) {
                             alert("删除成功");
-                            location.href = '/Employee.html';
+                            location.href = '/Index.html';
                         }
                     }
                 })
@@ -208,6 +208,22 @@
 
             })
         }
+        function pay(id) {
+            $.ajax({
+                url: "/Login/RemberName",
+                type: "get",
+                success: function (d) {
+                    if (d != null && d != "") {
+                        location.href = "/PayInfoAdd.html?eid=" + id;
+                    }
+                    else {
+                        alert("请登陆之后在操作！");
+                        return;
+                    }
+                }
+            })
+            
+        }
         $(function () {
             $.ajax({
                 url: "http://localhost:44319/api/Company/GetCompanyList",
@@ -215,8 +231,9 @@
                 dataType: "json",
                 success: function (data) {
                     $("#Select1").empty();
+                    $("#Select1").append('<option value="-1">==请选择==</option>')
                     $(data).each(function () {
-                        var line = '<option value=' + this.Companyid + '>' + this.Cname + '</option>'
+                        var line = '<option value="' + this.Companyid + '">' + this.Cname + '</option>'
                         $("#Select1").append(line);
                     })
 

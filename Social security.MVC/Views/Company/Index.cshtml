@@ -91,11 +91,11 @@
             success: function (data) {
                 $("#td").empty();
                 $(data).each(function () {
-                    var line = '<tr><td><input type="checkbox" class="ckdel" id=' + this.CompanyId + ' /></td>'
+                    var line = '<tr><td><input type="checkbox" class="ckdel" id=' + this.Companyid + ' /></td>'
                         + '<td>' + this.Cname + '</td>'
                         + '<td>' + this.Salesman + '</td>'
                         + '<td>' + this.CreateTime.toString("yyyy-MM-dd") + '</td>'
-                        + '<td><input id="btn1" type="button" value="删除" onclick="Del(' + this.CompanyId + ',this)" class="btn btn-danger" />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="修改" onclick="Upt(' + this.CompanyId + ')" class="btn btn-success" /></td > '
+                        + '<td><input id="btn1" type="button" value="删除" onclick="Del(' + this.Companyid + ',this)" class="btn btn-danger" />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="修改" onclick="Upt(' + this.Companyid + ')" class="btn btn-success" /></td > '
                         + '</tr>'
                     $("#td").append(line);
                 })
@@ -111,21 +111,21 @@
             success: function (data) {
                 $("#td").empty();
                 $(data).each(function () {
-                    var line = '<tr><td><input type="checkbox" class="ckdel" id=' + this.CompanyId + ' /></td>'
+                    var line = '<tr><td><input type="checkbox" class="ckdel" id=' + this.Companyid + ' /></td>'
                         + '<td>' + this.Cname + '</td>'
                         + '<td>' + this.Salesman + '</td>'
                         + '<td>' + this.CreateTime + '</td>'
-                        + '<td><input id="btn1" type="button" value="删除" onclick="Del(' + this.CompanyId + ',this)" class="btn btn-danger" />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="修改" onclick="Upt(' + this.CompanyId + ')" class="btn btn-success" /></td > '
+                        + '<td><input id="btn1" type="button" value="删除" onclick="Del(' + this.Companyid + ',this)" class="btn btn-danger" />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="修改" onclick="Upt(' + this.Companyid + ')" class="btn btn-success" /></td > '
                         + '</tr>'
                     $("#td").append(line);
                 })
             }
         })
     }
-    function Del(CompanyId) {
+    function Del(Companyid) {
         if (confirm("确认要删除吗？")) {
             $.ajax({
-                url: 'http://localhost:44319/api/Company/DelCompany/' + CompanyId,
+                url: 'http://localhost:44319/api/Company/DelCompany/' + Companyid,
                 type: 'get',
                 success: function (data) {
                     if (data > 0) {

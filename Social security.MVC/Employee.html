@@ -9,26 +9,39 @@
     <script type="text/javascript">
         $(function () {
         $.ajax({
-            url: "http://localhost:44319/api/Employee/GetAllEmployees",
+            url: "http://localhost:44319/api/Employee/GetEmployees",
             type: 'get',
             dataType:'json',
             success: function (d) {
                 $("#body").empty();
                 $(d).each(function () {
                     var line = '<tr>'
-                        + '<td><input class="check" type="checkbox" /></td>'
+                        + '<td><input class="check" type="checkbox" value="' + this.ID + '" /></td>'
                         + '<td>' + this.Name + '</td>'
                         + '<td>' + Sexd(this.Sex) + '</td>'
                         + '<td>' + this.Companys.Cname + '</td>'
                         + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger"  />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" />&nbsp&nbsp&nbsp&nbsp<input id="btn3" type="button" value="缴费" class="btn btn-warning" onclick="pay(' + this.ID + ')" /></td>'
                         + '</tr>'
-                   
                     $("#body").append(line);
                 })
           
             }
 
         })
+            $.ajax({
+                url: "http://localhost:44319/api/Company/GetCompanyList",
+                type: "get",
+                dataType: "json",
+                success: function (data) {
+                    $("#Select1").empty();
+                    $("#Select1").append('<option value="-1">==请选择==</option>')
+                    $(data).each(function () {
+                        var line = '<option value="' + this.Companyid + '">' + this.Cname + '</option>'
+                        $("#Select1").append(line);
+                    })
+
+                }
+            })
     })
     function Sexd(id) {
         if (id == 0) {
@@ -49,7 +62,7 @@
                 $("#body").empty();
                 $(d).each(function () {
                     var line = '<tr>'
-                        + '<td><input class="check" type="checkbox" /></td>'
+                        + '<td><input class="check" type="checkbox" value="' + this.ID + '"/></td>'
                         + '<td>' + this.Name + '</td>'
                         + '<td>' + Sexd(this.Sex) + '</td>'
                         + '<td>' + this.Companys.Cname + '</td>'
@@ -75,26 +88,30 @@
         }
         function AllDelete() {
             if (confirm("确认删除吗？")) {
-                var id = [];
-                $(".ckeck:checked").each(function () {
-                    id.push(this.value);
+                var ids = [];
+                $(".check:checked").each(function () {
+                    ids.push(this.value);
                 })
-                if (id.length == 0) {
+                if (ids.length == 0) {
                     alert("请至少选中一条记录");
-                    return false;
+                    return;
                 }
                 $.ajax({
-                    url: 'http://localhost:44319/api/Employee/DelEmployees/id=' + id.toString(),
+                    url: 'http://localhost:44319/api/Employee/DelEmployees/id=' + ids.toString(),
                     type: 'post',
                     success: function (d) {
                         if (d > 0) {
                             alert("删除成功");
                             location.href = '/Index.html';
                         }
+                        else {
+                            alert("删除失败");
+                        }
                     }
                 })
             }
         }
+        
         function DelEmploy(id) {
             if (!confirm('确认删除吗?')) {
                 return;
@@ -122,7 +139,7 @@
                     $("#body").empty();
                     $(d).each(function () {
                         var line = '<tr>'
-                            + '<td><input class="check" type="checkbox" /></td>'
+                            + '<td><input class="check" type="checkbox" value="' + this.ID + '" /></td>'
                             + '<td>' + this.Name + '</td>'
                             + '<td>' + Sexd(this.Sex) + '</td>'
                             + '<td>' + this.Companys.Cname + '</td>'
@@ -145,7 +162,7 @@
                     $("#body").empty();
                     $(d).each(function () {
                         var line = '<tr>'
-                            + '<td><input class="check" type="checkbox" /></td>'
+                            + '<td><input class="check" type="checkbox" value="' + this.ID + '" /></td>'
                             + '<td>' + this.Name + '</td>'
                             + '<td>' + Sexd(this.Sex) + '</td>'
                             + '<td>' + this.Companys.Cname + '</td>'
@@ -170,7 +187,7 @@
                     $("#body").empty();
                     $(d).each(function () {
                         var line = '<tr>'
-                            + '<td><input class="check" type="checkbox" /></td>'
+                            + '<td><input class="check" type="checkbox" value="' + this.ID + '"/></td>'
                             + '<td>' + this.Name + '</td>'
                             + '<td>' + Sexd(this.Sex) + '</td>'
                             + '<td>' + this.Companys.Cname + '</td>'
@@ -194,7 +211,7 @@
                     $("#body").empty();
                     $(d).each(function () {
                         var line = '<tr>'
-                            + '<td><input class="check" type="checkbox" /></td>'
+                            + '<td><input class="check" type="checkbox" value="' + this.ID + '" /></td>'
                             + '<td>' + this.Name + '</td>'
                             + '<td>' + Sexd(this.Sex) + '</td>'
                             + '<td>' + this.Companys.Cname + '</td>'
@@ -224,22 +241,7 @@
             })
             
         }
-        $(function () {
-            $.ajax({
-                url: "http://localhost:44319/api/Company/GetCompanyList",
-                type: "get",
-                dataType: "json",
-                success: function (data) {
-                    $("#Select1").empty();
-                    $("#Select1").append('<option value="-1">==请选择==</option>')
-                    $(data).each(function () {
-                        var line = '<option value="' + this.Companyid + '">' + this.Cname + '</option>'
-                        $("#Select1").append(line);
-                    })
-
-                }
-            })
-        })
+     
     </script>
     <style>
         #Button1 {

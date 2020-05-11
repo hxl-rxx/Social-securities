@@ -15,14 +15,21 @@
              success: function (d) {
                  $("#TexName").val(d.Name),
                      $("#TexCard").val(d.IDCard),
-                     $("input[name=sex][value=" + d.Sex + "]").attr("checked", "checked")
+                     $("input[name=sex][value=" + d.Sex + "]").attr("checked", "checked"),
                  $("#Select1 option").each(function () {
                      if (d.Cid.toString() == this.Cid) {
                          this.selected = true;
                      }
-                 })
+                 }),
                      $("#TexPhone").val(d.Tel),
-                     $("#TexAdd").val(d.Address)
+                     $("#TexAdd").val(d.Address),
+                     $('#Select2 option:selected').val(d.Aid),
+                 $("#fixPhone").val(d.Fixphone),
+              $('#Select3 option:selected').val(d.Rid),
+                      $("#TexBank").val(d.OpenBank),
+                      $("#BankName").val(d.OpenName),
+                    $("#TexSub").val(d.SubBank),
+                 $("#Texmber").val(d.BankNumber)
              }
          })
          function UptEmploy() {
@@ -33,6 +40,13 @@
              s.Cid = $('#Select1 option:selected').val()
              s.Tel = $("#TexPhone").val();
              s.Address = $("#TexAdd").val();
+             s.Aid = $('#Select2 option:selected').val();
+             s.Fixphone = $("#fixPhone").val();
+             s.Rid = $('#Select3 option:selected').val();
+             s.OpenBank = $("#TexBank").val();
+             s.OpenName = $("#BankName").val();
+             s.SubBank = $("#TexSub").val();
+             s.BankNumber = $("#Texmber").val();
              s.ID = MessId;
              $.ajax({
                  url: 'http://localhost:44319/api/Employee/UptEmployees',
@@ -64,27 +78,82 @@
                  }
              })
          })
+         $(function () {
+             $.ajax({
+                 url: "http://localhost:44319/api/Social/GetRegists",
+                 type: "get",
+                 dataType: "json",
+                 success: function (data) {
+                     $("#Select3").empty();
+                     $(data).each(function () {
+                         var line = '<option value=' + this.Rid + '>' + this.Rname + '</option>'
+                         $("#Select3").append(line);
+                     })
+
+                 }
+             })
+         })
+         $(function () {
+             $.ajax({
+                 url: "http://localhost:44319/api/Social/GetAddresses",
+                 type: "get",
+                 dataType: "json",
+                 success: function (data) {
+                     $("#Select2").empty();
+                     $(data).each(function () {
+                         var line = '<option value=' + this.Aid + '>' + this.Aname + '</option>'
+                         $("#Select2").append(line);
+                     })
+
+                 }
+             })
+         })
      </script>
 </head>
 <body>
-    <div class="panel-body">
+    <div style="margin-top:50px">
         <form role="form" class="form-inline">
-            <div style="margin-bottom:15px;"><label>姓名:</label> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="TexName" placeholder="请输入姓名"></div>
-            <div style="margin-bottom:15px;"><label>身份证号:</label>&nbsp<input type="text" class="form-control" id="TexCard" placeholder="请输入身份证号"></div>
-            <div style="margin-bottom:15px;">
-                <label>性别:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="Radio1" type="radio" value="1" name="sex" checked="checked" />男
-                <input id="Radio1" type="radio" value="0" name="sex" />女
+            <div style="float:left;margin-left:150PX">
+                <div style="margin-bottom:15px;"><label>姓名:</label> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="TexName" placeholder="请输入姓名"></div>
+                <div style="margin-bottom:15px;"><label>身份证号:</label>&nbsp<input type="text" class="form-control" id="TexCard" placeholder="请输入身份证号"></div>
+                <div style="margin-bottom:15px;">
+                    <label>性别:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="Radio1" type="radio" value="1" name="sex" checked="checked" />男
+                    <input id="Radio1" type="radio" value="0" name="sex" />女
+                </div>
+                <div style="margin-bottom:15px;">
+                    <label>公司:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <select id="Select1">
+                        <option>==请选择==</option>
+                    </select>
+                </div>
+                <div style="margin-bottom:15px;"><label>联系电话:</label>&nbsp<input type="text" class="form-control" id="TexPhone" placeholder="请输入联系方式"></div>
+                <div style="margin-bottom:15px;"><label>住址:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="TexAdd" placeholder="请输入住址"></div>
+                <div style="margin-top:100px">
+                    &nbsp&nbsp&nbsp&nbsp&nbsp
+                    <input id="Button1" type="button" value="修改" onclick="UptEmploy()" class="btn btn-success" />
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <input id="Button1" type="button" value="返回" onclick="location.href='/Index.html'" class="btn btn-danger" />
+                </div>
             </div>
-            <div style="margin-bottom:15px;">
-                <label>公司:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                <select id="Select1" name="Employ">
-                </select>
-            </div>
-            <div style="margin-bottom:15px;"><label>联系电话:</label>&nbsp<input type="text" class="form-control" id="TexPhone" placeholder="请输入联系方式"></div>
-            <div style="margin-bottom:15px;"><label>住址:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="TexAdd" placeholder="请输入住址"></div>
-            <div>
-                <input id="Button1" type="button" value="提交" onclick="AddEmploy()" class="btn btn-success" />
-                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input id="Button1" type="button" value="返回" onclick="location.href='/Index.html'" class="btn btn-danger" />
+            <div style="float:right;margin-right:300PX">
+                <div style="margin-bottom:15px;">
+                    <label>社保缴纳地:</label> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<select id="Select2">
+                        <option value="-1">==请选择==</option>
+                    </select>
+                </div>
+                <div style="margin-bottom:15px;"><label>固定电话:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="fixPhone" placeholder="请输入电话"></div>
+                <div style="margin-bottom:15px;">
+                    <label>户口类型:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<select id="Select3">
+                        <option value="-1">==请选择==</option>
+                    </select>
+                </div>
+                <div style="margin-bottom:15px;">
+                    <label>开户名称:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <input id="BankName" type="text" class="form-control" placeholder="请输入开户名称" />
+                </div>
+                <div style="margin-bottom:15px;"><label>开户银行:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="TexBank" placeholder="请输入银行名称"></div>
+                <div style="margin-bottom:15px;"><label>支行名称:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="TexSub" placeholder="请输入支行名称"></div>
+                <div style="margin-bottom:15px;"><label>账号:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="Texmber" placeholder="请输入账号"></div>
             </div>
         </form>
     </div>

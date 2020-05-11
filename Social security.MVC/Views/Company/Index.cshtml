@@ -58,7 +58,7 @@
     <form role="form" class="form-inline">
         <div class="form-group" style="float:right"><input id="Button1" type="button" value="查询" onclick="Sel()" /></div>
         <div class="form-group" style="float:right"><input type="text" class="form-control" id="name" placeholder="请输入公司名称"></div>
-        <button id="btn_add" type="button" class="btn btn-success" onclick="location.href='/Company/Create'">
+        <button id="btn_add" type="button" class="btn btn-success" onclick="createCompany()">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增公司
         </button>
     </form>
@@ -123,22 +123,34 @@
         })
     }
     function Del(Companyid) {
-        if (confirm("确认要删除吗？")) {
-            $.ajax({
-                url: 'http://localhost:44319/api/Company/DelCompany/' + Companyid,
-                type: 'get',
-                success: function (data) {
-                    if (data > 0) {
+        $.ajax({
+            url: "/Login/RemberName",
+            type: "get",
+            success: function (d) {
+                if (d != null && d != "") {
+                    if (confirm("确认要删除吗？")) {
+                        $.ajax({
+                            url: 'http://localhost:44319/api/Company/DelCompany/' + Companyid,
+                            type: 'get',
+                            success: function (data) {
+                                if (data > 0) {
 
-                        alert("删除成功");
-                        location.href = "/Index.html";
-                    }
-                    else {
-                        alert("删除失败");
+                                    alert("删除成功");
+                                    location.href = "/Index.html";
+                                }
+                                else {
+                                    alert("删除失败");
+                                }
+                            }
+                        })
                     }
                 }
-            })
-        }
+                else {
+                    alert("请登陆之后再进行操作！");
+                    return;
+                }
+            }
+        })
     }
     function alldel() {
         if ($(".top").prop("checked")) {
@@ -151,32 +163,71 @@
         }
     }
     function DelAll() {
-        if (confirm("确认删除吗？")) {
-            var ids = [];
-            $(".ckdel:checked").each(function () {
-                ids.push(this.value);
-            })
-            if (ids.length == 0) {
-                alert("请至少选中一条记录");
-                return false;
-            }
-            $.ajax({
-                url: 'http://localhost:44319/api/Company/DelCompany/id=' + ids.toString(),
-                type: 'get',
-                success: function (data) {
-                    if (data > 0) {
-                        alert("删除成功");
-                    }
-                    else {
-                        alert("删除失败");
+        $.ajax({
+            url: "/Login/RemberName",
+            type: "get",
+            success: function (d) {
+                if (d != null && d != "") {
+                    if (confirm("确认删除吗？")) {
+                        var ids = [];
+                        $(".ckdel:checked").each(function () {
+                            ids.push(this.value);
+                        })
+                        if (ids.length == 0) {
+                            alert("请至少选中一条记录");
+                            return false;
+                        }
+                        $.ajax({
+                            url: 'http://localhost:44319/api/Company/DelCompany/id=' + ids.toString(),
+                            type: 'get',
+                            success: function (data) {
+                                if (data > 0) {
+                                    alert("删除成功");
+                                }
+                                else {
+                                    alert("删除失败");
+                                }
+                            }
+                        })
                     }
                 }
-            })
-        }
+                else {
+                    alert("请登陆之后再进行操作！");
+                    return;
+                }
+            }
+        })
     }
 
     function Upt(Id) {
-        location.href = "/Company/Update/?id=" + Id;
+        $.ajax({
+            url: "/Login/RemberName",
+            type: "get",
+            success: function (d) {
+                if (d != null && d != "") {
+                    location.href = "/Company/Update/?id=" + Id;
+                }
+                else {
+                    alert("请登陆之后再进行操作！");
+                    return;
+                }
+            }
+        })
+    }
+    function createCompany() {
+        $.ajax({
+            url: "/Login/RemberName",
+            type: "get",
+            success: function (d) {
+                if (d != null && d != "") {
+                    location.href = '/Company/Create'
+                }
+                else {
+                    alert("请登陆之后再进行操作！");
+                    return;
+                }
+            }
+        })
     }
 </script>
 

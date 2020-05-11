@@ -9,39 +9,26 @@
     <script type="text/javascript">
         $(function () {
         $.ajax({
-            url: "http://localhost:44319/api/Employee/GetEmployees",
+            url: "http://localhost:44319/api/Employee/GetAllEmployees",
             type: 'get',
             dataType:'json',
             success: function (d) {
                 $("#body").empty();
                 $(d).each(function () {
                     var line = '<tr>'
-                        + '<td><input class="check" type="checkbox" value="' + this.ID + '" /></td>'
+                        + '<td><input class="check" type="checkbox" /></td>'
                         + '<td>' + this.Name + '</td>'
                         + '<td>' + Sexd(this.Sex) + '</td>'
                         + '<td>' + this.Companys.Cname + '</td>'
                         + '<td><input id="btn1" type="button" value="删除" onclick="DelEmploy(' + this.ID + ')" class="btn btn-danger"  />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="详情" onclick="UptEmploy(' + this.ID + ')" class="btn btn-success" />&nbsp&nbsp&nbsp&nbsp<input id="btn3" type="button" value="缴费" class="btn btn-warning" onclick="pay(' + this.ID + ')" /></td>'
                         + '</tr>'
+                   
                     $("#body").append(line);
                 })
           
             }
 
         })
-            $.ajax({
-                url: "http://localhost:44319/api/Company/GetCompanyList",
-                type: "get",
-                dataType: "json",
-                success: function (data) {
-                    $("#Select1").empty();
-                    $("#Select1").append('<option value="-1">==请选择==</option>')
-                    $(data).each(function () {
-                        var line = '<option value="' + this.Companyid + '">' + this.Cname + '</option>'
-                        $("#Select1").append(line);
-                    })
-
-                }
-            })
     })
     function Sexd(id) {
         if (id == 0) {
@@ -62,7 +49,7 @@
                 $("#body").empty();
                 $(d).each(function () {
                     var line = '<tr>'
-                        + '<td><input class="check" type="checkbox" value="' + this.ID + '"/></td>'
+                        + '<td><input class="check" type="checkbox" /></td>'
                         + '<td>' + this.Name + '</td>'
                         + '<td>' + Sexd(this.Sex) + '</td>'
                         + '<td>' + this.Companys.Cname + '</td>'
@@ -87,48 +74,80 @@
             }
         }
         function AllDelete() {
-            if (confirm("确认删除吗？")) {
-                var ids = [];
-                $(".check:checked").each(function () {
-                    ids.push(this.value);
-                })
-                if (ids.length == 0) {
-                    alert("请至少选中一条记录");
-                    return;
-                }
-                $.ajax({
-                    url: 'http://localhost:44319/api/Employee/DelEmployees/id=' + ids.toString(),
-                    type: 'post',
-                    success: function (d) {
-                        if (d > 0) {
-                            alert("删除成功");
-                            location.href = '/Index.html';
-                        }
-                        else {
-                            alert("删除失败");
+            $.ajax({
+                url: "/Login/RemberName",
+                type: "get",
+                success: function (d) {
+                    if (d != null && d != "") {
+                        if (confirm("确认删除吗？")) {
+                            var id = [];
+                            $(".ckeck:checked").each(function () {
+                                id.push(this.value);
+                            })
+                            if (id.length == 0) {
+                                alert("请至少选中一条记录");
+                                return false;
+                            }
+                            $.ajax({
+                                url: 'http://localhost:44319/api/Employee/DelEmployees/id=' + id.toString(),
+                                type: 'post',
+                                success: function (d) {
+                                    if (d > 0) {
+                                        alert("删除成功");
+                                        location.href = '/Index.html';
+                                    }
+                                }
+                            })
                         }
                     }
-                })
-            }
+                    else {
+                        alert("请登陆之后再进行操作！");
+                        return;
+                    }
+                }
+            })
         }
-        
         function DelEmploy(id) {
-            if (!confirm('确认删除吗?')) {
-                return;
-            }
             $.ajax({
-                url: 'http://localhost:44319/api/Employee/DelEmployees/' + id,
-                type: 'post',
+                url: "/Login/RemberName",
+                type: "get",
                 success: function (d) {
-                    if (d > 0) {
-                        alert("删除成功");
-                        location.href = '/Index.html';
+                    if (d != null && d != "") {
+                        if (!confirm('确认删除吗?')) {
+                            return;
+                        }
+                        $.ajax({
+                            url: 'http://localhost:44319/api/Employee/DelEmployees/' + id,
+                            type: 'post',
+                            success: function (d) {
+                                if (d > 0) {
+                                    alert("删除成功");
+                                    location.href = '/Index.html';
+                                }
+                            }
+                        })
+                    }
+                    else {
+                        alert("请登陆之后再进行操作！");
+                        return;
                     }
                 }
             })
         }
         function UptEmploy(id) {
-            location.href = "/EmployUpdate.html?id=" + id;
+            $.ajax({
+                url: "/Login/RemberName",
+                type: "get",
+                success: function (d) {
+                    if (d != null && d != "") {
+                        location.href = "/EmployUpdate.html?id=" + id;
+                    }
+                    else {
+                        alert("请登陆之后再进行操作！");
+                        return;
+                    }
+                }
+            })
         }
         function firstpage() {
             $.ajax({
@@ -139,7 +158,7 @@
                     $("#body").empty();
                     $(d).each(function () {
                         var line = '<tr>'
-                            + '<td><input class="check" type="checkbox" value="' + this.ID + '" /></td>'
+                            + '<td><input class="check" type="checkbox" /></td>'
                             + '<td>' + this.Name + '</td>'
                             + '<td>' + Sexd(this.Sex) + '</td>'
                             + '<td>' + this.Companys.Cname + '</td>'
@@ -162,7 +181,7 @@
                     $("#body").empty();
                     $(d).each(function () {
                         var line = '<tr>'
-                            + '<td><input class="check" type="checkbox" value="' + this.ID + '" /></td>'
+                            + '<td><input class="check" type="checkbox" /></td>'
                             + '<td>' + this.Name + '</td>'
                             + '<td>' + Sexd(this.Sex) + '</td>'
                             + '<td>' + this.Companys.Cname + '</td>'
@@ -187,7 +206,7 @@
                     $("#body").empty();
                     $(d).each(function () {
                         var line = '<tr>'
-                            + '<td><input class="check" type="checkbox" value="' + this.ID + '"/></td>'
+                            + '<td><input class="check" type="checkbox" /></td>'
                             + '<td>' + this.Name + '</td>'
                             + '<td>' + Sexd(this.Sex) + '</td>'
                             + '<td>' + this.Companys.Cname + '</td>'
@@ -211,7 +230,7 @@
                     $("#body").empty();
                     $(d).each(function () {
                         var line = '<tr>'
-                            + '<td><input class="check" type="checkbox" value="' + this.ID + '" /></td>'
+                            + '<td><input class="check" type="checkbox" /></td>'
                             + '<td>' + this.Name + '</td>'
                             + '<td>' + Sexd(this.Sex) + '</td>'
                             + '<td>' + this.Companys.Cname + '</td>'
@@ -234,14 +253,42 @@
                         location.href = "/PayInfoAdd.html?eid=" + id;
                     }
                     else {
-                        alert("请登陆之后在操作！");
+                        alert("请登陆之后再进行操作！");
                         return;
                     }
                 }
             })
-            
         }
-     
+        function createEmployee() {
+            $.ajax({
+                url: "/Login/RemberName",
+                type: "get",
+                success: function (d) {
+                    if (d != null && d != "") {
+                        location.href = '/EmployAdd.html';
+                    }
+                    else {
+                        alert("请登陆之后再进行操作！");
+                        return;
+                    }
+                }
+            })
+        }
+        $(function () {
+            $.ajax({
+                url: "http://localhost:44319/api/Company/GetCompanyList",
+                type: "get",
+                dataType: "json",
+                success: function (data) {
+                    $("#Select1").empty();
+                    $("#Select1").append('<option value="-1">==请选择==</option>')
+                    $(data).each(function () {
+                        var line = '<option value="' + this.Companyid + '">' + this.Cname + '</option>'
+                        $("#Select1").append(line);
+                    })
+                }
+            })
+        })
     </script>
     <style>
         #Button1 {
@@ -369,7 +416,7 @@
             </div>
             
            
-            <button id="btn_add" type="button" class="btn btn-success" onclick="location.href='/EmployAdd.html'">
+            <button id="btn_add" type="button" class="btn btn-success" onclick="createEmployee()">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增员工
             </button>
         </form>

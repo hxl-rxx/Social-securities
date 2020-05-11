@@ -74,44 +74,80 @@
             }
         }
         function AllDelete() {
-            if (confirm("确认删除吗？")) {
-                var id = [];
-                $(".ckeck:checked").each(function () {
-                    id.push(this.value);
-                })
-                if (id.length == 0) {
-                    alert("请至少选中一条记录");
-                    return false;
-                }
-                $.ajax({
-                    url: 'http://localhost:44319/api/Employee/DelEmployees/id=' + id.toString(),
-                    type: 'post',
-                    success: function (d) {
-                        if (d > 0) {
-                            alert("删除成功");
-                            location.href = '/Index.html';
+            $.ajax({
+                url: "/Login/RemberName",
+                type: "get",
+                success: function (d) {
+                    if (d != null && d != "") {
+                        if (confirm("确认删除吗？")) {
+                            var id = [];
+                            $(".ckeck:checked").each(function () {
+                                id.push(this.value);
+                            })
+                            if (id.length == 0) {
+                                alert("请至少选中一条记录");
+                                return false;
+                            }
+                            $.ajax({
+                                url: 'http://localhost:44319/api/Employee/DelEmployees/id=' + id.toString(),
+                                type: 'post',
+                                success: function (d) {
+                                    if (d > 0) {
+                                        alert("删除成功");
+                                        location.href = '/Index.html';
+                                    }
+                                }
+                            })
                         }
                     }
-                })
-            }
+                    else {
+                        alert("请登陆之后再进行操作！");
+                        return;
+                    }
+                }
+            })
         }
         function DelEmploy(id) {
-            if (!confirm('确认删除吗?')) {
-                return;
-            }
             $.ajax({
-                url: 'http://localhost:44319/api/Employee/DelEmployees/' + id,
-                type: 'post',
+                url: "/Login/RemberName",
+                type: "get",
                 success: function (d) {
-                    if (d > 0) {
-                        alert("删除成功");
-                        location.href = '/Index.html';
+                    if (d != null && d != "") {
+                        if (!confirm('确认删除吗?')) {
+                            return;
+                        }
+                        $.ajax({
+                            url: 'http://localhost:44319/api/Employee/DelEmployees/' + id,
+                            type: 'post',
+                            success: function (d) {
+                                if (d > 0) {
+                                    alert("删除成功");
+                                    location.href = '/Index.html';
+                                }
+                            }
+                        })
+                    }
+                    else {
+                        alert("请登陆之后再进行操作！");
+                        return;
                     }
                 }
             })
         }
         function UptEmploy(id) {
-            location.href = "/EmployUpdate.html?id=" + id;
+            $.ajax({
+                url: "/Login/RemberName",
+                type: "get",
+                success: function (d) {
+                    if (d != null && d != "") {
+                        location.href = "/EmployUpdate.html?id=" + id;
+                    }
+                    else {
+                        alert("请登陆之后再进行操作！");
+                        return;
+                    }
+                }
+            })
         }
         function firstpage() {
             $.ajax({
@@ -217,12 +253,26 @@
                         location.href = "/PayInfoAdd.html?eid=" + id;
                     }
                     else {
-                        alert("请登陆之后在操作！");
+                        alert("请登陆之后再进行操作！");
                         return;
                     }
                 }
             })
-            
+        }
+        function createEmployee() {
+            $.ajax({
+                url: "/Login/RemberName",
+                type: "get",
+                success: function (d) {
+                    if (d != null && d != "") {
+                        location.href = '/EmployAdd.html';
+                    }
+                    else {
+                        alert("请登陆之后再进行操作！");
+                        return;
+                    }
+                }
+            })
         }
         $(function () {
             $.ajax({
@@ -236,7 +286,6 @@
                         var line = '<option value="' + this.Companyid + '">' + this.Cname + '</option>'
                         $("#Select1").append(line);
                     })
-
                 }
             })
         })
@@ -367,7 +416,7 @@
             </div>
             
            
-            <button id="btn_add" type="button" class="btn btn-success" onclick="location.href='/EmployAdd.html'">
+            <button id="btn_add" type="button" class="btn btn-success" onclick="createEmployee()">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增员工
             </button>
         </form>

@@ -111,51 +111,54 @@
      </script>
 </head>
 <body>
-    <div style="margin-top:50px">
-        <form role="form" class="form-inline">
-            <div style="float:left;margin-left:150PX">
-                <div style="margin-bottom:15px;"><label>姓名:</label> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="TexName" placeholder="请输入姓名"></div>
-                <div style="margin-bottom:15px;"><label>身份证号:</label>&nbsp<input type="text" class="form-control" id="TexCard" placeholder="请输入身份证号"></div>
-                <div style="margin-bottom:15px;">
-                    <label>性别:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="Radio1" type="radio" value="1" name="sex" checked="checked" />男
-                    <input id="Radio1" type="radio" value="0" name="sex" />女
-                </div>
-                <div style="margin-bottom:15px;">
-                    <label>公司:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <select id="Select1">
-                        <option>==请选择==</option>
-                    </select>
-                </div>
-                <div style="margin-bottom:15px;"><label>联系电话:</label>&nbsp<input type="text" class="form-control" id="TexPhone" placeholder="请输入联系方式"></div>
-                <div style="margin-bottom:15px;"><label>住址:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="TexAdd" placeholder="请输入住址"></div>
-                <div style="margin-top:100px">
-                    &nbsp&nbsp&nbsp&nbsp&nbsp
-                    <input id="Button1" type="button" value="修改" onclick="UptEmploy()" class="btn btn-success" />
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <input id="Button1" type="button" value="返回" onclick="location.href='/Index.html'" class="btn btn-danger" />
-                </div>
-            </div>
-            <div style="float:right;margin-right:300PX">
-                <div style="margin-bottom:15px;">
-                    <label>社保缴纳地:</label> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<select id="Select2">
-                        <option value="-1">==请选择==</option>
-                    </select>
-                </div>
-                <div style="margin-bottom:15px;"><label>固定电话:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="fixPhone" placeholder="请输入电话"></div>
-                <div style="margin-bottom:15px;">
-                    <label>户口类型:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<select id="Select3">
-                        <option value="-1">==请选择==</option>
-                    </select>
-                </div>
-                <div style="margin-bottom:15px;">
-                    <label>开户名称:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <input id="BankName" type="text" class="form-control" placeholder="请输入开户名称" />
-                </div>
-                <div style="margin-bottom:15px;"><label>开户银行:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="TexBank" placeholder="请输入银行名称"></div>
-                <div style="margin-bottom:15px;"><label>支行名称:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="TexSub" placeholder="请输入支行名称"></div>
-                <div style="margin-bottom:15px;"><label>账号:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="Texmber" placeholder="请输入账号"></div>
-            </div>
-        </form>
-    </div>
+   
+                    <div style="margin-top:50px">
+                        <form role="form" class="form-inline">
+                            <div style="float:left;margin-left:250PX">
+                                <div style="margin-bottom:15px;"><label>姓名:</label> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="TexName" placeholder="请输入姓名"></div>
+                                <div style="margin-bottom:15px;"><label>身份证号:</label>&nbsp<input type="text" class="form-control" id="TexCard" placeholder="请输入身份证号"></div>
+                                <div style="margin-bottom:15px;">
+                                    <label>性别:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="Radio1" type="radio" value="1" name="sex" checked="checked" />男
+                                    <input id="Radio1" type="radio" value="0" name="sex" />女
+                                </div>
+                                <div style="margin-bottom:15px;">
+                                    <label>公司:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                    <select id="Select1">
+                                        <option>==请选择==</option>
+                                    </select>
+                                </div>
+                                <div style="margin-bottom:15px;"><label>联系电话:</label>&nbsp<input type="text" class="form-control" id="TexPhone" placeholder="请输入联系方式"></div>
+                                <div style="margin-bottom:15px;"><label>住址:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="TexAdd" placeholder="请输入住址"></div>
+                                <div style="margin-top:100px">
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp
+                                    <input id="Button1" type="button" value="修改" onclick="UptEmploy()" class="btn btn-success" />
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                    <input id="Button1" type="button" value="返回" onclick="location.href='/Index.html'" class="btn btn-danger" />
+                                </div>
+                            </div>
+                            <div style="float:right;margin-right:350PX">
+                                <div style="margin-bottom:15px;">
+                                    <label>社保缴纳地:</label> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<select id="Select2">
+                                        <option value="-1">==请选择==</option>
+                                    </select>
+                                </div>
+                                <div style="margin-bottom:15px;"><label>固定电话:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="fixPhone" placeholder="请输入电话"></div>
+                                <div style="margin-bottom:15px;">
+                                    <label>户口类型:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<select id="Select3">
+                                        <option value="-1">==请选择==</option>
+                                    </select>
+                                </div>
+                                <div style="margin-bottom:15px;">
+                                    <label>开户名称:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                    <input id="BankName" type="text" class="form-control" placeholder="请输入开户名称" />
+                                </div>
+                                <div style="margin-bottom:15px;"><label>开户银行:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="TexBank" placeholder="请输入银行名称"></div>
+                                <div style="margin-bottom:15px;"><label>支行名称:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="TexSub" placeholder="请输入支行名称"></div>
+                                <div style="margin-bottom:15px;"><label>账号:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" class="form-control" id="Texmber" placeholder="请输入账号"></div>
+                            </div>
+                        </form>
+                    </div>
+                
+    
 </body>
 </html>

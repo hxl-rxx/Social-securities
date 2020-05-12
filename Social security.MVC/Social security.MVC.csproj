@@ -146,10 +146,13 @@
     <Content Include="Images\1001560.jpg" />
     <Content Include="Images\QQ图片20200423165223.jpg" />
     <Content Include="Images\QQ图片20200423193957.jpg" />
+    <Content Include="Images\QQ图片20200512182911.png" />
+    <Content Include="Images\QQ图片20200512183142.png" />
     <Content Include="Images\untitled.jpg" />
     <Content Include="Images\untitled_副本.png" />
     <Content Include="Images\批注 2020-05-08 211017.png" />
     <Content Include="Images\虎翼_副本.jpg" />
+    <Content Include="Images\麒麟_副本.jpg" />
     <Content Include="Index.html" />
     <Content Include="js\js.cookie.js" />
     <Content Include="Login.html" />

@@ -16,8 +16,8 @@
         text-align: center;
         text-decoration: none;
         outline: none;
-        color: #fff;
-        background-color: #32ab68;
+        color: #000000;
+        background-color: #c8d5d2;
         border: none;
         border-radius: 15px;
         box-shadow: 0 9px #999;
@@ -32,7 +32,7 @@
 
     #div1 {
         border-radius: 25px;
-        background: antiquewhite;
+        background: #ffffff;
         padding: 20px;
         width: 1250px;
     }
@@ -44,7 +44,7 @@
         width: 1250px;
     }
     #tr1:hover {
-        background-color: #ce8097;
+        background-color: #c8d5d2;
     }
 </style>
 
@@ -98,7 +98,7 @@
                         + '<td>' + this.Cname + '</td>'
                         + '<td>' + this.Salesman + '</td>'
                         + '<td>' + this.CreateTime.toString("yyyy-MM-dd") + '</td>'
-                        + '<td><input id="btn1" type="button" value="删除" onclick="Del(' + this.Companyid + ',this)" class="btn btn-danger" />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="修改" onclick="Upt(' + this.Companyid + ')" class="btn btn-success" /></td > '
+                        + '<td><input id="btn1" type="button" value="删除" onclick="Del(' + this.Companyid + ',this)" class="btn btn-info" />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="修改" onclick="Upt(' + this.Companyid + ')" class="btn btn-info" /></td > '
                         + '</tr>'
                     $("#td").append(line);
                 })

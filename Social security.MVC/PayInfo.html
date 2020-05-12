@@ -31,6 +31,9 @@
             padding: 20px;
             width: 1250px;
         }
+        #tr1:hover {
+            background-color: #ce8097;
+        }
     </style>
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -90,7 +93,7 @@
             success: function (d) {
                 $("#body").empty();
                 $(d).each(function () {
-                    var line = '<tr>'
+                    var line = '<tr id="tr1">'
                         + '<td><input class="check" type="checkbox" /></td>'
                         + '<td>' + this.Cname + '</td>'
                         + '<td>' + this.Name + '</td>'
@@ -170,7 +173,7 @@
             success: function (data) {
                 $("#body").empty();
                 $(data).each(function () {
-                    var line = '<tr>'
+                    var line = '<tr id="tr1">'
                         + '<td><input class="check" type="checkbox" /></td>'
                         + '<td>' + this.Cname + '</td>'
                         + '<td>' + this.Name + '</td>'

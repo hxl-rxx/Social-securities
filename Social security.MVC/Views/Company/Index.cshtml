@@ -43,6 +43,9 @@
         padding: 20px;
         width: 1250px;
     }
+    #tr1:hover {
+        background-color: #ce8097;
+    }
 </style>
 
 <ol class="breadcrumb">
@@ -91,7 +94,7 @@
             success: function (data) {
                 $("#td").empty();
                 $(data).each(function () {
-                    var line = '<tr><td><input type="checkbox" class="ckdel" id=' + this.Companyid + ' /></td>'
+                    var line = '<tr id="tr1"><td><input type="checkbox" class="ckdel" id=' + this.Companyid + ' /></td>'
                         + '<td>' + this.Cname + '</td>'
                         + '<td>' + this.Salesman + '</td>'
                         + '<td>' + this.CreateTime.toString("yyyy-MM-dd") + '</td>'
@@ -111,7 +114,7 @@
             success: function (data) {
                 $("#td").empty();
                 $(data).each(function () {
-                    var line = '<tr><td><input type="checkbox" class="ckdel" id=' + this.Companyid + ' /></td>'
+                    var line = '<tr id="tr1"><td><input type="checkbox" class="ckdel" id=' + this.Companyid + ' /></td>'
                         + '<td>' + this.Cname + '</td>'
                         + '<td>' + this.Salesman + '</td>'
                         + '<td>' + this.CreateTime + '</td>'

@@ -35,6 +35,7 @@
         background: antiquewhite;
         padding: 20px;
         width: 1250px;
+        
     }
     #div1 {
         border-radius: 25px;
@@ -42,6 +43,10 @@
         background-repeat: repeat;
         padding: 20px;
         width: 1250px;
+    }
+
+    #div2 {
+        font-size: larger;
     }
     #tr1:hover {
         background-color: #ce8097;
@@ -59,22 +64,35 @@
 
 <div class="panel-body">
     <form role="form" class="form-inline">
-        <div class="form-group" style="float:right"><input id="Button1" type="button" value="查询" onclick="Sel()" /></div>
-        <div class="form-group" style="float:right"><input type="text" class="form-control" id="name" placeholder="请输入公司名称"></div>
         <button id="btn_add" type="button" class="btn btn-success" onclick="createCompany()">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增公司
         </button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="form-group"><input type="text" class="form-control" id="name" placeholder="请输入公司名称"></div>
+        <div class="form-group"><input id="Button1" type="button" value="查询" onclick="Sel()" /></div>
     </form>
 </div>
 <div class="table-responsive" id="div1">
     <table class="table table-striped">
-        <thead>
+        <thead id="div2">
             <tr>
                 <th><input id="top" class="top" type="checkbox" onclick="alldel()" /></th>
                 <th>公司名称</th>
-                <th>销售员</th>
+                <th>用户名</th>
+                <th>公司地址</th>
+                <th>公司类型</th>
                 <th>创建时间</th>
-                <th>操作</th>
+                <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;操作</th>
             </tr>
         </thead>
         <tbody id="td"></tbody>
@@ -97,6 +115,8 @@
                     var line = '<tr id="tr1"><td><input type="checkbox" class="ckdel" id=' + this.Companyid + ' /></td>'
                         + '<td>' + this.Cname + '</td>'
                         + '<td>' + this.Salesman + '</td>'
+                        + '<td>' + this.Addresses + '</td>'
+                        + '<td>' + this.Ctype + '</td>'
                         + '<td>' + this.CreateTime.toString("yyyy-MM-dd") + '</td>'
                         + '<td><input id="btn1" type="button" value="删除" onclick="Del(' + this.Companyid + ',this)" class="btn btn-danger" />&nbsp&nbsp&nbsp&nbsp<input id="btn2" type="button" value="修改" onclick="Upt(' + this.Companyid + ')" class="btn btn-success" /></td > '
                         + '</tr>'
